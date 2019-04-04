@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:context=".MainActivity">
+  android:layout_height="@dimen/min_tappable_size">
 
-  <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/allSections"
+  <TextView
+    android:id="@+id/sectionName"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    tools:text="View animator framework" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

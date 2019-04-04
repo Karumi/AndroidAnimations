@@ -1,3 +1,6 @@
 <resources>
   <string name="app_name">Android Animations</string>
+  <string name="section_view_animator_framework">View animator framework</string>
+  <string name="section_property_animation_framework">Property animation framework</string>
+  <string name="section_animated_vector_drawable">Animated vector drawable</string>
 </resources>

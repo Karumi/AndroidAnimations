@@ -7,7 +7,7 @@ android {
   compileSdkVersion 28
   defaultConfig {
     applicationId "com.karumi.androidanimations"
-    minSdkVersion 16
+    minSdkVersion 19
     targetSdkVersion 28
     versionCode 1
     versionName "1.0"
@@ -29,6 +29,7 @@ dependencies {
   implementation "androidx.recyclerview:recyclerview:1.0.0"
   implementation "androidx.navigation:navigation-fragment-ktx:2.0.0"
   implementation "androidx.navigation:navigation-ui-ktx:2.0.0"
+  implementation 'com.afollestad:recyclical:0.5.2'
   testImplementation "junit:junit:4.12"
   androidTestImplementation "com.android.support.test:runner:1.0.2"
   androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
