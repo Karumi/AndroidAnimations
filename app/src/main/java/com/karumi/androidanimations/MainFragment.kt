@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.recyclical.ViewHolder
 import com.afollestad.recyclical.datasource.dataSourceOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
-import com.karumi.androidanimations.extensions.exhaustive
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment() {
@@ -45,11 +45,12 @@ class MainFragment : Fragment() {
                 }
 
                 onClick { _, item ->
-                    when (item) {
-                        Section.ViewAnimator -> R.string.section_view_animator_framework
-                        Section.PropertyAnimation -> R.string.section_property_animation_framework
-                        Section.AnimatedVector -> R.string.section_animated_vector_drawable
-                    }.exhaustive
+                    val directions = when (item) {
+                        Section.ViewAnimator -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
+                        Section.PropertyAnimation -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
+                        Section.AnimatedVector -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
+                    }
+                    findNavController().navigate(directions)
                 }
             }
         }
