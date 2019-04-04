@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.recyclical.ViewHolder
 import com.afollestad.recyclical.datasource.dataSourceOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
+import com.karumi.androidanimations.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
-class MainFragment : Fragment() {
+class MainFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +38,7 @@ class MainFragment : Fragment() {
             withItem<Section>(R.layout.view_section) {
                 onBind(::SectionViewHolder) { _, item ->
                     name.text = when (item) {
-                        Section.ViewAnimator -> R.string.section_view_animator_framework
+                        Section.ViewAnimation -> R.string.section_view_animation_framework
                         Section.PropertyAnimation -> R.string.section_property_animation_framework
                         Section.AnimatedVector -> R.string.section_animated_vector_drawable
                     }.resolve()
@@ -46,7 +46,7 @@ class MainFragment : Fragment() {
 
                 onClick { _, item ->
                     val directions = when (item) {
-                        Section.ViewAnimator -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
+                        Section.ViewAnimation -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
                         Section.PropertyAnimation -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
                         Section.AnimatedVector -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
                     }
@@ -56,10 +56,8 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun Int.resolve(): String = getString(this)
-
     private enum class Section {
-        ViewAnimator, PropertyAnimation, AnimatedVector
+        ViewAnimation, PropertyAnimation, AnimatedVector
     }
 
     private class SectionViewHolder(itemView: View) : ViewHolder(itemView) {

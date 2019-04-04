@@ -10,12 +10,12 @@
     android:label="@string/app_name">
     <action
       android:id="@+id/action_mainFragment_to_viewAnimatorFragment"
-      app:destination="@id/viewAnimatorFragment"
+      app:destination="@id/viewAnimationFragment"
       app:enterAnim="@anim/nav_default_enter_anim"
       app:exitAnim="@anim/nav_default_exit_anim" />
   </fragment>
   <fragment
-    android:id="@+id/viewAnimatorFragment"
-    android:name="com.karumi.androidanimations.viewanimator.ViewAnimatorFragment"
-    android:label="ViewAnimatorFragment" />
+    android:id="@+id/viewAnimationFragment"
+    android:name="com.karumi.androidanimations.viewanimator.ViewAnimationFragment"
+    android:label="ViewAnimationFragment" />
 </navigation>
