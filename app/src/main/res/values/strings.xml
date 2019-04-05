@@ -7,4 +7,6 @@
   <string name="view_animation_rotate">RotateAnimation</string>
   <string name="view_animation_scale">ScaleAnimation</string>
   <string name="view_animation_translate">TranslateAnimation</string>
+  <string name="view_animation_set">AnimationSet</string>
+  <string name="view_animation_button">Animate me!</string>
 </resources>
