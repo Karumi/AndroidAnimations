@@ -16,14 +16,18 @@ interface ViewAnimationSet {
     }
 
     class Binder(val getContext: () -> Context) {
-        operator fun invoke(
-            receiver: VH
-        ) = receiver.bind()
+        operator fun invoke(receiver: VH) = receiver.bind()
 
         private fun VH.bind() {
             name.text = getContext().getString(R.string.view_animation_set)
             button.setOnClickListener {
-                TODO("Implement the animation set to animate this.containerView!")
+                TODO(
+                    """
+                        | Implement your chained animation with AnimationSet
+                        |
+                        | You can use this.containerView to animate the whole card view.
+                    | """.trimMargin()
+                )
             }
         }
     }

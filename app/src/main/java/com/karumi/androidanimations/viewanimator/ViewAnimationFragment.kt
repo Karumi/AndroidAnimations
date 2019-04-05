@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.fragment_view_animator.*
 
 class ViewAnimationFragment : BaseFragment() {
 
-    val simpleAnimationViewHolderBinder = ViewSimpleAnimation.Binder(::requireContext)
-    val animationSetViewHolderBinder = ViewAnimationSet.Binder(::requireContext)
+    val simpleAnimationBinder = ViewSimpleAnimation.Binder(::requireContext)
+    val animationSetBinder = ViewAnimationSet.Binder(::requireContext)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,15 +43,11 @@ class ViewAnimationFragment : BaseFragment() {
             withDataSource(dataSource)
 
             withItem<SimpleAnimation>(R.layout.view_simple_view_animation) {
-                onBind({ ViewSimpleAnimation.VH(it) }) { _, item ->
-                    simpleAnimationViewHolderBinder(this, item)
-                }
+                onBind(ViewSimpleAnimation::VH) { _, item -> simpleAnimationBinder(this, item) }
             }
 
             withItem<AnimationSet>(R.layout.view_set_view_animation) {
-                onBind({ ViewAnimationSet.VH(it) }) { _, _ ->
-                    animationSetViewHolderBinder(this)
-                }
+                onBind(ViewAnimationSet::VH) { _, _ -> animationSetBinder(this) }
             }
         }
     }

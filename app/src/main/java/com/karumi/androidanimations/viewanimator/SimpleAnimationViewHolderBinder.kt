@@ -19,14 +19,9 @@ interface ViewSimpleAnimation {
     }
 
     class Binder(val getContext: () -> Context) {
-        operator fun invoke(
-            receiver: VH,
-            item: SimpleAnimation
-        ) = receiver.bind(item)
+        operator fun invoke(receiver: VH, item: SimpleAnimation) = receiver.bind(item)
 
-        private fun VH.bind(
-            item: SimpleAnimation
-        ) {
+        private fun VH.bind(item: SimpleAnimation) {
             name.text = getAnimationName(item)
             val animation = getAnimation(item).apply {
                 duration = 1000
