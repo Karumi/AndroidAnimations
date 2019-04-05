@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
@@ -58,7 +59,16 @@ class ViewAnimationFragment : BaseFragment() {
                             Animation.RELATIVE_TO_SELF,
                             0.5f
                         )
-                        AnimationType.Scale -> ScaleAnimation(1f, 2f, 1f, 0f)
+                        AnimationType.Scale -> ScaleAnimation(
+                            1f,
+                            2f,
+                            1f,
+                            0f,
+                            Animation.RELATIVE_TO_SELF,
+                            0.5f,
+                            Animation.RELATIVE_TO_SELF,
+                            0.5f
+                        )
                         AnimationType.Translate -> TranslateAnimation(
                             Animation.RELATIVE_TO_SELF,
                             -2f,
@@ -73,6 +83,8 @@ class ViewAnimationFragment : BaseFragment() {
                         duration = 1000
                         repeatMode = Animation.REVERSE
                         repeatCount = Animation.INFINITE
+                        interpolator = AccelerateDecelerateInterpolator()
+                        fillAfter = true
                     }
                     targetView.startAnimation(animation)
                 }

@@ -17,5 +17,5 @@
   <fragment
     android:id="@+id/viewAnimationFragment"
     android:name="com.karumi.androidanimations.viewanimator.ViewAnimationFragment"
-    android:label="ViewAnimationFragment" />
+    android:label="@string/section_view_animation_framework" />
 </navigation>
