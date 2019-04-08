@@ -31,8 +31,7 @@ class PropertyAnimationFragment : BaseFragment() {
     private fun configureAllAnimations() {
         val layoutManager = LinearLayoutManager(requireContext())
         val dataSource = dataSourceOf(
-            PropertyAnimation.Translate,
-            PropertyAnimation.Path
+            *PropertyAnimation.values()
         )
 
         allAnimations.setup {

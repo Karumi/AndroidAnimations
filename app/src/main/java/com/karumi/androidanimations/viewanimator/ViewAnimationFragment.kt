@@ -31,10 +31,7 @@ class ViewAnimationFragment : BaseFragment() {
     private fun configureAllAnimations() {
         val layoutManager = LinearLayoutManager(requireContext())
         val dataSource = dataSourceOf(
-            SimpleAnimation.Alpha,
-            SimpleAnimation.Rotate,
-            SimpleAnimation.Scale,
-            SimpleAnimation.Translate,
+            *SimpleAnimation.values(),
             AnimationSet
         )
 
