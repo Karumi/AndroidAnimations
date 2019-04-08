@@ -47,7 +47,7 @@ class MainFragment : BaseFragment() {
                 onClick { _, item ->
                     val directions = when (item) {
                         Section.ViewAnimation -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
-                        Section.PropertyAnimation -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
+                        Section.PropertyAnimation -> MainFragmentDirections.actionMainFragmentToPropertyAnimationFragment()
                         Section.AnimatedVector -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
                     }
                     findNavController().navigate(directions)

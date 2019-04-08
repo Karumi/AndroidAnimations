@@ -13,9 +13,16 @@
       app:destination="@id/viewAnimationFragment"
       app:enterAnim="@anim/nav_default_enter_anim"
       app:exitAnim="@anim/nav_default_exit_anim" />
+    <action
+      android:id="@+id/action_mainFragment_to_propertyAnimationFragment"
+      app:destination="@id/propertyAnimationFragment" />
   </fragment>
   <fragment
     android:id="@+id/viewAnimationFragment"
     android:name="com.karumi.androidanimations.viewanimator.ViewAnimationFragment"
     android:label="@string/section_view_animation_framework" />
+  <fragment
+    android:id="@+id/propertyAnimationFragment"
+    android:name="com.karumi.androidanimations.propertyanimations.PropertyAnimationFragment"
+    android:label="PropertyAnimationFragment" />
 </navigation>
