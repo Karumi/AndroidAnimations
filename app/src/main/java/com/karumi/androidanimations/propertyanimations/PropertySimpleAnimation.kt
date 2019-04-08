@@ -1,0 +1,107 @@
+package com.karumi.androidanimations.propertyanimations
+
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
+import android.content.Context
+import android.graphics.Color
+import android.graphics.Path
+import android.graphics.PathMeasure
+import android.graphics.Point
+import android.os.Build
+import android.view.View
+import android.view.WindowManager
+import android.widget.TextView
+import com.karumi.androidanimations.R
+import com.karumi.androidanimations.propertyanimations.PropertyAnimationFragment.PropertyAnimation
+import kotlin.random.Random
+
+interface PropertySimpleAnimation {
+    class VH(itemView: View) : com.afollestad.recyclical.ViewHolder(itemView) {
+        val name: TextView = itemView.findViewById(R.id.animationName)
+        val button: View = itemView.findViewById(R.id.target)
+    }
+
+    class Binder(val getContext: () -> Context) {
+        operator fun invoke(receiver: VH, item: PropertyAnimation) = receiver.bind(item)
+
+        private fun VH.bind(item: PropertyAnimation) {
+            name.text = getAnimationName(item)
+            animate(item, button)
+        }
+
+        private fun getAnimationName(item: PropertyAnimation): String = when (item) {
+            PropertyAnimation.Translate -> R.string.property_animation_translation_x
+            PropertyAnimation.Path -> R.string.property_animation_path_interpolator
+        }.let { getContext().getString(it) }
+
+        private fun animate(item: PropertyAnimation, view: View) {
+            view.configureOnClickListener()
+            return when (item) {
+                PropertyAnimation.Translate -> {
+                    ValueAnimator.ofFloat(0f, 0.5f * screenSize.x.toFloat()).apply {
+                        duration = 2000
+                        addUpdateListener {
+                            val translationX =
+                                it.animatedValue as? Float ?: return@addUpdateListener
+                            view.translationX = translationX
+                        }
+                        repeatCount = ValueAnimator.INFINITE
+                        repeatMode = ValueAnimator.REVERSE
+                    }.start()
+                }
+                PropertyAnimation.Path -> {
+                    val path = Path().apply {
+                        moveTo(50f, 50f)
+                        quadTo(50f, 200f, 0.5f * screenSize.x.toFloat(), 200f)
+                    }
+                    animatePath(view, path)
+                }
+            }
+        }
+
+        private val screenSize: Point
+            get() {
+                val wm = getContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
+                val point = Point()
+                wm.defaultDisplay.getSize(point)
+                return point
+            }
+
+        private fun View.configureOnClickListener() {
+            setOnClickListener { setBackgroundColor(nextRandomColor()) }
+        }
+
+        private fun nextRandomColor(): Int = with(Random.Default) {
+            Color.argb(255, nextInt(256), nextInt(256), nextInt(256))
+        }
+
+        private fun animatePath(view: View, path: Path) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                ObjectAnimator.ofFloat(
+                    view,
+                    View.X,
+                    View.Y,
+                    path
+                ).apply {
+                    duration = 1000
+                    repeatCount = ValueAnimator.INFINITE
+                    repeatMode = ValueAnimator.REVERSE
+                }.start()
+            } else {
+                val coordinates = FloatArray(2)
+                val pathMeasure = PathMeasure(path, true)
+                ValueAnimator.ofFloat(0f, pathMeasure.length).apply {
+                    duration = 1000
+                    repeatCount = ValueAnimator.INFINITE
+                    repeatMode = ValueAnimator.REVERSE
+                    addUpdateListener {
+                        val distance = it.animatedValue as Float
+                        pathMeasure.getPosTan(distance, coordinates, null)
+                        view.translationX = coordinates[0]
+                        view.translationY = coordinates[1]
+                    }
+                }.start()
+            }
+        }
+    }
+}

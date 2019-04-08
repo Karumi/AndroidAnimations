@@ -11,4 +11,5 @@
   <string name="view_animation_button">Animate me!</string>
   <string name="property_animation_button">Click me!</string>
   <string name="property_animation_translation_x">Translation X</string>
+  <string name="property_animation_path_interpolator">PathInterpolator</string>
 </resources>
