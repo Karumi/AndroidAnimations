@@ -10,7 +10,7 @@ import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
 import com.karumi.androidanimations.R
 import com.karumi.androidanimations.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_view_animator.*
+import kotlinx.android.synthetic.main.fragment_view_animation.*
 
 class ViewAnimationFragment : BaseFragment() {
 
@@ -21,7 +21,7 @@ class ViewAnimationFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_view_animator, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_view_animation, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
