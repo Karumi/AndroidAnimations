@@ -47,6 +47,6 @@ class PropertyAnimationFragment : BaseFragment() {
     }
 
     enum class PropertyAnimation {
-        Translate, Path
+        Translate, Path, AnimatorSet
     }
 }

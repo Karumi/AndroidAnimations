@@ -1,5 +1,6 @@
 package com.karumi.androidanimations.propertyanimations
 
+import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
@@ -32,11 +33,12 @@ interface PropertySimpleAnimation {
         private fun getAnimationName(item: PropertyAnimation): String = when (item) {
             PropertyAnimation.Translate -> R.string.property_animation_translation_x
             PropertyAnimation.Path -> R.string.property_animation_path_interpolator
+            PropertyAnimation.AnimatorSet -> R.string.property_animation_path_interpolator
         }.let { getContext().getString(it) }
 
         private fun animate(item: PropertyAnimation, view: View) {
             view.configureOnClickListener()
-            return when (item) {
+            when (item) {
                 PropertyAnimation.Translate -> {
                     ValueAnimator.ofFloat(0f, 0.5f * screenSize.x.toFloat()).apply {
                         duration = 2000
@@ -54,7 +56,41 @@ interface PropertySimpleAnimation {
                         moveTo(50f, 50f)
                         quadTo(50f, 200f, 0.5f * screenSize.x.toFloat(), 200f)
                     }
-                    animatePath(view, path)
+                    animatePath(view, path).start()
+                }
+                PropertyAnimation.AnimatorSet -> {
+                    val path = Path().apply {
+                        moveTo(50f, 50f)
+                        quadTo(50f, 200f, 0.5f * screenSize.x.toFloat(), 200f)
+                    }
+
+                    val circlePathAnimation = animatePath(view, path).apply {
+                        repeatCount = 0
+                        repeatMode = ValueAnimator.RESTART
+                    }.apply { duration = 2000 }
+
+                    val rotationAnimation = ObjectAnimator.ofFloat(
+                        view, View.ROTATION, 0f, 360f
+                    ).apply { duration = 2000 }
+
+                    val scaleXAnimation =
+                        ObjectAnimator.ofFloat(
+                            view, View.SCALE_X, 1f, 1.2f
+                        ).apply { duration = 1000 }
+                    val scaleYAnimation =
+                        ObjectAnimator.ofFloat(
+                            view, View.SCALE_Y, 1f, 1.2f
+                        ).apply { duration = 1000 }
+
+                    AnimatorSet().apply {
+                        play(circlePathAnimation)
+                            .with(rotationAnimation)
+                        play(circlePathAnimation)
+                            .before(scaleXAnimation)
+                        play(scaleYAnimation)
+                            .with(scaleXAnimation)
+                        duration = 1000
+                    }.start()
                 }
             }
         }
@@ -75,7 +111,7 @@ interface PropertySimpleAnimation {
             Color.argb(255, nextInt(256), nextInt(256), nextInt(256))
         }
 
-        private fun animatePath(view: View, path: Path) {
+        private fun animatePath(view: View, path: Path): ValueAnimator =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 ObjectAnimator.ofFloat(
                     view,
@@ -86,7 +122,7 @@ interface PropertySimpleAnimation {
                     duration = 1000
                     repeatCount = ValueAnimator.INFINITE
                     repeatMode = ValueAnimator.REVERSE
-                }.start()
+                }
             } else {
                 val coordinates = FloatArray(2)
                 val pathMeasure = PathMeasure(path, true)
@@ -100,8 +136,7 @@ interface PropertySimpleAnimation {
                         view.translationX = coordinates[0]
                         view.translationY = coordinates[1]
                     }
-                }.start()
+                }
             }
-        }
     }
 }
