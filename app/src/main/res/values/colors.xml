@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <color name="white">#FFFFFF</color>
+  <color name="white_50">#7DFFFFFF</color>
   <color name="colorPrimary">#008577</color>
   <color name="colorPrimaryDark">#00574B</color>
   <color name="colorAccent">#D81B60</color>
+  <color name="bittersweet">#FF6865</color>
+  <color name="java">#1fE5B3</color>
 </resources>

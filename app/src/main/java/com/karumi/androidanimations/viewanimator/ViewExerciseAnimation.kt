@@ -7,11 +7,10 @@ import android.widget.TextView
 import com.afollestad.recyclical.ViewHolder
 import com.karumi.androidanimations.R
 
-interface ViewAnimationSet {
+interface ViewExerciseAnimation {
 
     class VH(itemView: View) : ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.animationName)
-        val containerView: View = itemView
         val button: Button = itemView.findViewById(R.id.button)
     }
 
@@ -23,9 +22,9 @@ interface ViewAnimationSet {
             button.setOnClickListener {
                 TODO(
                     """
-                        | Implement your chained animation with AnimationSet
-                        |
-                        | You can use this.containerView to animate the whole card view.
+                    | Implement your chained animation with AnimationSet according to the slides
+                    |
+                    | You can use this.itemView to animate the whole card view.
                     | """.trimMargin()
                 )
             }

@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_view_animation.*
 class ViewAnimationFragment : BaseFragment() {
 
     val simpleAnimationBinder = ViewSimpleAnimation.Binder(::requireContext)
-    val animationSetBinder = ViewAnimationSet.Binder(::requireContext)
+    val animationSetBinder = ViewExerciseAnimation.Binder(::requireContext)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +32,7 @@ class ViewAnimationFragment : BaseFragment() {
         val layoutManager = LinearLayoutManager(requireContext())
         val dataSource = dataSourceOf(
             *SimpleAnimation.values(),
-            AnimationSet
+            Exercise
         )
 
         allAnimations.setup {
@@ -43,8 +43,8 @@ class ViewAnimationFragment : BaseFragment() {
                 onBind(ViewSimpleAnimation::VH) { _, item -> simpleAnimationBinder(this, item) }
             }
 
-            withItem<AnimationSet>(R.layout.view_set_view_animation) {
-                onBind(ViewAnimationSet::VH) { _, _ -> animationSetBinder(this) }
+            withItem<Exercise>(R.layout.view_exercise_view_animation) {
+                onBind(ViewExerciseAnimation::VH) { _, _ -> animationSetBinder(this) }
             }
         }
     }
@@ -53,5 +53,5 @@ class ViewAnimationFragment : BaseFragment() {
         Alpha, Rotate, Scale, Translate
     }
 
-    object AnimationSet
+    object Exercise
 }

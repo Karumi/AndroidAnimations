@@ -13,4 +13,5 @@
   <string name="property_animation_translation_x">Translation X</string>
   <string name="property_animation_path_interpolator">PathInterpolator</string>
   <string name="property_animation_animator_set">AnimatorSet</string>
+  <string name="property_animation_exercise">Exercise</string>
 </resources>

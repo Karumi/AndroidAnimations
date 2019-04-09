@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_property_animation.*
 class PropertyAnimationFragment : BaseFragment() {
 
     val propertySimpleAnimationBinder = PropertySimpleAnimation.Binder(::requireContext)
+    val propertyExerciseAnimationBinder = PropertyExerciseAnimation.Binder(::requireContext)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +32,8 @@ class PropertyAnimationFragment : BaseFragment() {
     private fun configureAllAnimations() {
         val layoutManager = LinearLayoutManager(requireContext())
         val dataSource = dataSourceOf(
-            *PropertyAnimation.values()
+            *PropertyAnimation.values(),
+            Exercise
         )
 
         allAnimations.setup {
@@ -43,10 +45,17 @@ class PropertyAnimationFragment : BaseFragment() {
                     propertySimpleAnimationBinder(this, item)
                 }
             }
+            withItem<Exercise>(R.layout.view_exercise_property_animation) {
+                onBind(PropertyExerciseAnimation::VH) { _, _ ->
+                    propertyExerciseAnimationBinder(this)
+                }
+            }
         }
     }
 
     enum class PropertyAnimation {
         Translate, Path, AnimatorSet
     }
+
+    object Exercise
 }
