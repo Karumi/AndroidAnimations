@@ -32,7 +32,6 @@ interface DrawableGraphicsSimpleAnimation {
         private fun getAnimationName(item: DrawableGraphicsAnimation): String = when (item) {
             DrawableGraphicsAnimation.Keyframe -> R.string.drawable_graphics_animation_by_keyframe
             DrawableGraphicsAnimation.Vector -> R.string.drawable_graphics_animation_with_vector
-            DrawableGraphicsAnimation.Lottie -> R.string.drawable_graphics_animation_with_lottie
         }.let { getContext().getString(it) }
 
         private fun animate(item: DrawableGraphicsAnimation, view: AppCompatImageView) {
@@ -50,8 +49,6 @@ interface DrawableGraphicsSimpleAnimation {
                         start()
                     }
                     view.setImageDrawable(animation)
-                }
-                DrawableGraphicsAnimation.Lottie -> {
                 }
             }.exhaustive
         }

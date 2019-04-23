@@ -18,6 +18,8 @@ class DrawableGraphicsAnimationFragment : BaseFragment() {
         DrawableGraphicsSimpleAnimation.Binder(::requireContext)
     val drawableGraphicsExerciseAnimationBinder =
         DrawableGraphicsExerciseAnimation.Binder(::requireContext)
+    val drawableGraphicsLottieAnimationBinder =
+        DrawableGraphicsLottieAnimation.Binder(::requireContext)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +36,7 @@ class DrawableGraphicsAnimationFragment : BaseFragment() {
         val layoutManager = LinearLayoutManager(requireContext())
         val dataSource = dataSourceOf(
             *DrawableGraphicsAnimation.values(),
+            Lottie,
             Exercise
         )
 
@@ -46,6 +49,11 @@ class DrawableGraphicsAnimationFragment : BaseFragment() {
                     drawableGraphicsSimpleAnimationBinder(this, item)
                 }
             }
+            withItem<Lottie>(R.layout.view_lottie_drawable_graphics_animation) {
+                onBind(DrawableGraphicsLottieAnimation::VH) { _, _ ->
+                    drawableGraphicsLottieAnimationBinder(this)
+                }
+            }
             withItem<Exercise>(R.layout.view_exercise_drawable_graphics_animation) {
                 onBind(DrawableGraphicsExerciseAnimation::VH) { _, _ ->
                     drawableGraphicsExerciseAnimationBinder(this)
@@ -55,8 +63,9 @@ class DrawableGraphicsAnimationFragment : BaseFragment() {
     }
 
     enum class DrawableGraphicsAnimation {
-        Keyframe, Vector, Lottie
+        Keyframe, Vector
     }
 
+    object Lottie
     object Exercise
 }
