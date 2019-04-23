@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="140dp"
+  android:layout_margin="16dp">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+      android:id="@+id/animationName"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:textAlignment="textEnd"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:text="View animation framework" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+      android:id="@+id/keyframeAnimationView"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      app:layout_constraintBottom_toTopOf="@id/seekBar"
+      app:layout_constraintEnd_toStartOf="@id/vectorizedAnimationView"
+      app:layout_constraintHorizontal_chainStyle="spread"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/animationName" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+      android:id="@+id/vectorizedAnimationView"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      app:layout_constraintBottom_toTopOf="@id/seekBar"
+      app:layout_constraintEnd_toStartOf="@id/lottieAnimationView"
+      app:layout_constraintHorizontal_chainStyle="spread"
+      app:layout_constraintStart_toEndOf="@id/keyframeAnimationView"
+      app:layout_constraintTop_toBottomOf="@id/animationName" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+      android:id="@+id/lottieAnimationView"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      app:layout_constraintBottom_toTopOf="@id/seekBar"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_chainStyle="spread"
+      app:layout_constraintStart_toEndOf="@id/vectorizedAnimationView"
+      app:layout_constraintTop_toBottomOf="@id/animationName" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+      android:id="@+id/seekBar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintBottom_toBottomOf="parent" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

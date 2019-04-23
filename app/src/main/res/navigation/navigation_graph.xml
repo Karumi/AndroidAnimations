@@ -16,6 +16,9 @@
     <action
       android:id="@+id/action_mainFragment_to_propertyAnimationFragment"
       app:destination="@id/propertyAnimationFragment" />
+    <action
+      android:id="@+id/action_mainFragment_to_drawableGraphicsAnimationFragment"
+      app:destination="@id/drawableGraphicsAnimationFragment" />
   </fragment>
   <fragment
     android:id="@+id/viewAnimationFragment"
@@ -25,4 +28,8 @@
     android:id="@+id/propertyAnimationFragment"
     android:name="com.karumi.androidanimations.propertyanimations.PropertyAnimationFragment"
     android:label="PropertyAnimationFragment" />
+  <fragment
+    android:id="@+id/drawableGraphicsAnimationFragment"
+    android:name="com.karumi.androidanimations.drawablegraphicsanimation.DrawableGraphicsAnimationFragment"
+    android:label="DrawableGraphicsAnimationFragment" />
 </navigation>
