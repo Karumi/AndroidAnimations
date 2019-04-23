@@ -41,7 +41,7 @@
       app:layout_constraintStart_toEndOf="@id/keyframeAnimationView"
       app:layout_constraintTop_toBottomOf="@id/animationName" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.airbnb.lottie.LottieAnimationView
       android:id="@+id/lottieAnimationView"
       android:layout_width="50dp"
       android:layout_height="50dp"
