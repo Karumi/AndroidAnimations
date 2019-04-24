@@ -20,4 +20,6 @@
   <string name="drawable_graphics_animation_with_vector">Vector animation</string>
   <string name="drawable_graphics_animation_with_lottie">Lottie animation</string>
   <string name="drawable_graphics_animation_exercise">Exercise</string>
+  <string name="drawable_graphics_animation_exercise_play_button">Play</string>
+  <string name="drawable_graphics_animation_exercise_stop_button">Stop</string>
 </resources>

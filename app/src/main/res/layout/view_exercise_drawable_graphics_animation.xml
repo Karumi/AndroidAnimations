@@ -3,7 +3,7 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="140dp"
+  android:layout_height="160dp"
   android:layout_margin="16dp">
 
   <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
       android:id="@+id/keyframeAnimationView"
       android:layout_width="50dp"
       android:layout_height="50dp"
-      app:layout_constraintBottom_toTopOf="@id/seekBar"
+      app:layout_constraintBottom_toTopOf="@id/playButton"
       app:layout_constraintEnd_toStartOf="@id/vectorizedAnimationView"
       app:layout_constraintHorizontal_chainStyle="spread"
       app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
       android:id="@+id/vectorizedAnimationView"
       android:layout_width="50dp"
       android:layout_height="50dp"
-      app:layout_constraintBottom_toTopOf="@id/seekBar"
+      app:layout_constraintBottom_toTopOf="@id/playButton"
       app:layout_constraintEnd_toStartOf="@id/lottieAnimationView"
       app:layout_constraintHorizontal_chainStyle="spread"
       app:layout_constraintStart_toEndOf="@id/keyframeAnimationView"
@@ -45,17 +45,31 @@
       android:id="@+id/lottieAnimationView"
       android:layout_width="50dp"
       android:layout_height="50dp"
-      app:layout_constraintBottom_toTopOf="@id/seekBar"
+      app:layout_constraintBottom_toTopOf="@id/playButton"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_chainStyle="spread"
       app:layout_constraintStart_toEndOf="@id/vectorizedAnimationView"
       app:layout_constraintTop_toBottomOf="@id/animationName" />
 
-    <androidx.appcompat.widget.AppCompatSeekBar
-      android:id="@+id/seekBar"
-      android:layout_width="match_parent"
+    <Button
+      android:id="@+id/playButton"
+      android:layout_width="80dp"
       android:layout_height="wrap_content"
-      app:layout_constraintBottom_toBottomOf="parent" />
+      android:text="@string/drawable_graphics_animation_exercise_play_button"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@id/stopButton"
+      app:layout_constraintHorizontal_chainStyle="spread"
+      app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+      android:id="@+id/stopButton"
+      android:layout_width="80dp"
+      android:layout_height="wrap_content"
+      android:text="@string/drawable_graphics_animation_exercise_stop_button"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_chainStyle="spread"
+      app:layout_constraintStart_toEndOf="@id/playButton" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 
