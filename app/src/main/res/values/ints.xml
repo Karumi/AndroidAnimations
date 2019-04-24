@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <integer name="keyframe_duration">12</integer>
+  <integer name="keyframe_exercise_duration">33</integer>
 </resources>
