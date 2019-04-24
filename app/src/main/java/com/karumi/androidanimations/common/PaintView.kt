@@ -2,7 +2,6 @@ package com.karumi.androidanimations.common
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
@@ -14,23 +13,27 @@ class PaintView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private val paths = mutableListOf<Path>()
+    private val paths = mutableListOf<Pair<Path, Int>>()
 
-    operator fun plusAssign(path: Path) {
-        paths.add(path)
+    operator fun plusAssign(pathAndColor: Pair<Path, Int>) {
+        paths.add(pathAndColor)
         invalidate()
     }
 
     private val paint: Paint = Paint().apply {
         style = Paint.Style.STROKE
-        color = Color.BLACK
-        strokeWidth = 2f
+        strokeWidth = 16f
+        isAntiAlias = true
+        strokeJoin = Paint.Join.ROUND
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         canvas ?: return
 
-        paths.forEach { canvas.drawPath(it, paint) }
+        paths.forEach {
+            paint.color = it.second
+            canvas.drawPath(it.first, paint)
+        }
     }
 }
