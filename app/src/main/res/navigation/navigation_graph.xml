@@ -19,6 +19,9 @@
     <action
       android:id="@+id/action_mainFragment_to_drawableGraphicsAnimationFragment"
       app:destination="@id/drawableGraphicsAnimationFragment" />
+    <action
+      android:id="@+id/action_mainFragment_to_pathDrawingFragment"
+      app:destination="@id/pathDrawingFragment" />
   </fragment>
   <fragment
     android:id="@+id/viewAnimationFragment"
@@ -32,4 +35,8 @@
     android:id="@+id/drawableGraphicsAnimationFragment"
     android:name="com.karumi.androidanimations.drawablegraphicsanimation.DrawableGraphicsAnimationFragment"
     android:label="DrawableGraphicsAnimationFragment" />
+  <fragment
+    android:id="@+id/pathDrawingFragment"
+    android:name="com.karumi.androidanimations.pathdrawing.PathDrawingFragment"
+    android:label="PathDrawingFragment" />
 </navigation>

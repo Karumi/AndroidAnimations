@@ -38,6 +38,7 @@ class MainFragment : BaseFragment() {
             withItem<Section>(R.layout.view_section) {
                 onBind(::SectionViewHolder) { _, item ->
                     name.text = when (item) {
+                        Section.PathDrawing -> R.string.section_path_drawing
                         Section.ViewAnimation -> R.string.section_view_animation_framework
                         Section.PropertyAnimation -> R.string.section_property_animation_framework
                         Section.AnimatedVector -> R.string.section_animated_vector_drawable
@@ -46,6 +47,7 @@ class MainFragment : BaseFragment() {
 
                 onClick { _, item ->
                     val directions = when (item) {
+                        Section.PathDrawing -> MainFragmentDirections.actionMainFragmentToPathDrawingFragment()
                         Section.ViewAnimation -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
                         Section.PropertyAnimation -> MainFragmentDirections.actionMainFragmentToPropertyAnimationFragment()
                         Section.AnimatedVector -> MainFragmentDirections.actionMainFragmentToDrawableGraphicsAnimationFragment()
@@ -57,7 +59,7 @@ class MainFragment : BaseFragment() {
     }
 
     private enum class Section {
-        ViewAnimation, PropertyAnimation, AnimatedVector
+        PathDrawing, ViewAnimation, PropertyAnimation, AnimatedVector
     }
 
     private class SectionViewHolder(itemView: View) : ViewHolder(itemView) {
