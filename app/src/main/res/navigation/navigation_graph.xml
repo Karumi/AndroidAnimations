@@ -22,6 +22,9 @@
     <action
       android:id="@+id/action_mainFragment_to_pathDrawingFragment"
       app:destination="@id/pathDrawingFragment" />
+    <action
+      android:id="@+id/action_mainFragment_to_layoutTransitionFragment"
+      app:destination="@id/layoutTransitionFragment" />
   </fragment>
   <fragment
     android:id="@+id/viewAnimationFragment"
@@ -39,4 +42,8 @@
     android:id="@+id/pathDrawingFragment"
     android:name="com.karumi.androidanimations.pathdrawing.PathDrawingFragment"
     android:label="PathDrawingFragment" />
+  <fragment
+    android:id="@+id/layoutTransitionFragment"
+    android:name="com.karumi.androidanimations.layouttransition.LayoutTransitionFragment"
+    android:label="LayoutTransitionFragment" />
 </navigation>

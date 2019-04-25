@@ -42,6 +42,7 @@ class MainFragment : BaseFragment() {
                         Section.ViewAnimation -> R.string.section_view_animation_framework
                         Section.PropertyAnimation -> R.string.section_property_animation_framework
                         Section.AnimatedVector -> R.string.section_animated_vector_drawable
+                        Section.LayoutTransition -> R.string.section_layout_transition
                     }.resolve()
                 }
 
@@ -51,6 +52,7 @@ class MainFragment : BaseFragment() {
                         Section.ViewAnimation -> MainFragmentDirections.actionMainFragmentToViewAnimatorFragment()
                         Section.PropertyAnimation -> MainFragmentDirections.actionMainFragmentToPropertyAnimationFragment()
                         Section.AnimatedVector -> MainFragmentDirections.actionMainFragmentToDrawableGraphicsAnimationFragment()
+                        Section.LayoutTransition -> MainFragmentDirections.actionMainFragmentToLayoutTransitionFragment()
                     }
                     findNavController().navigate(directions)
                 }
@@ -59,7 +61,7 @@ class MainFragment : BaseFragment() {
     }
 
     private enum class Section {
-        PathDrawing, ViewAnimation, PropertyAnimation, AnimatedVector
+        PathDrawing, ViewAnimation, PropertyAnimation, AnimatedVector, LayoutTransition
     }
 
     private class SectionViewHolder(itemView: View) : ViewHolder(itemView) {
