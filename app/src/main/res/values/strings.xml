@@ -26,4 +26,8 @@
   <string name="drawable_graphics_animation_exercise">Exercise</string>
   <string name="drawable_graphics_animation_exercise_play_button">Play</string>
   <string name="drawable_graphics_animation_exercise_stop_button">Stop</string>
+
+  <string name="layout_transition_fade">Fade</string>
+  <string name="layout_transition_change_bounds">Change bounds</string>
+  <string name="layout_transition_auto">Auto</string>
 </resources>

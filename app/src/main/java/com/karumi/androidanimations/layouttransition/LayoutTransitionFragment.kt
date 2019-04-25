@@ -11,10 +11,11 @@ import com.afollestad.recyclical.withItem
 import com.karumi.androidanimations.R
 import com.karumi.androidanimations.base.BaseFragment
 import com.karumi.androidanimations.propertyanimations.PropertyExerciseAnimation
-import com.karumi.androidanimations.propertyanimations.PropertySimpleAnimation
 import kotlinx.android.synthetic.main.fragment_property_animation.*
 
 class LayoutTransitionFragment : BaseFragment() {
+
+    val simpleLayoutTransitionBinder = SimpleLayoutTransition.Binder(::requireContext)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,8 +40,8 @@ class LayoutTransitionFragment : BaseFragment() {
             withDataSource(dataSource)
 
             withItem<LayoutTransition>(R.layout.view_simple_property_animation) {
-                onBind(PropertySimpleAnimation::VH) { _, item ->
-
+                onBind(SimpleLayoutTransition::VH) { _, item ->
+                    simpleLayoutTransitionBinder(this, item)
                 }
             }
             withItem<Exercise>(R.layout.view_exercise_property_animation) {
@@ -52,7 +53,7 @@ class LayoutTransitionFragment : BaseFragment() {
     }
 
     enum class LayoutTransition {
-        Fade, Bounds, Auto
+        Fade, ChangeBounds, Auto
     }
 
     object Exercise
