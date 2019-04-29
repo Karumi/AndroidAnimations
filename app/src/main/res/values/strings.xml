@@ -6,6 +6,7 @@
   <string name="section_property_animation_framework">Property animation framework</string>
   <string name="section_animated_vector_drawable">Animated vector drawable</string>
   <string name="section_layout_transition">Layout transition</string>
+  <string name="section_shared_elements">Shared elements</string>
 
   <string name="view_animation_alpha">AlphaAnimation</string>
   <string name="view_animation_rotate">RotateAnimation</string>
@@ -31,4 +32,13 @@
   <string name="layout_transition_change_bounds">Change bounds</string>
   <string name="layout_transition_auto">Auto</string>
   <string name="layout_transition_exercise">Exercise</string>
+
+  <string name="shared_image_transition">Exercise</string>
+  <string name="shared_image_avatar_content_description">Avatar</string>
+  <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+  <string name="shared_elements_exercise_color_bittersweet">BitterSweet</string>
+  <string name="shared_elements_exercise_color_java">Java</string>
+  <string name="shared_elements_exercise_color_molten">Molten</string>
+  <string name="shared_elements_exercise_color_gulava">Gulava</string>
 </resources>

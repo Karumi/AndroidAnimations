@@ -61,7 +61,7 @@ class ExerciseLayoutTransition {
                 |
                 | Use TransitionManager to animate views to the configured scene above.
                 | Remember the animation has to rotate the current view with your own implementation
-                | of a transition and move to the right position.
+                | of a sharedElementTransition and move to the right position.
                 """.trimMargin()
             )
         }

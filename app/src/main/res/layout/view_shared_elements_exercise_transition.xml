@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="160dp"
+  android:layout_margin="16dp">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/row"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/verticalGuideline"
+      android:layout_width="1dp"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/horizontalGuideline"
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:orientation="horizontal"
+      app:layout_constraintGuide_percent="0.5" />
+
+    <com.karumi.androidanimations.common.CircularView
+      android:id="@+id/topStartButton"
+      android:layout_width="@dimen/min_tappable_size"
+      android:layout_height="@dimen/min_tappable_size"
+      android:layout_margin="@dimen/margin2x"
+      android:background="@color/bittersweet"
+      android:clickable="true"
+      android:focusable="true"
+      android:transitionName="circularViewTransition"
+      app:layout_constraintBottom_toTopOf="@id/horizontalGuideline"
+      app:layout_constraintEnd_toStartOf="@id/verticalGuideline"
+      tools:ignore="UnusedAttribute" />
+
+    <com.karumi.androidanimations.common.CircularView
+      android:id="@+id/topEndButton"
+      android:layout_width="@dimen/min_tappable_size"
+      android:layout_height="@dimen/min_tappable_size"
+      android:layout_margin="@dimen/margin2x"
+      android:background="@color/java"
+      android:clickable="true"
+      android:focusable="true"
+      android:transitionName="circularViewTransition"
+      app:layout_constraintBottom_toTopOf="@id/horizontalGuideline"
+      app:layout_constraintStart_toEndOf="@id/verticalGuideline"
+      tools:ignore="UnusedAttribute" />
+
+    <com.karumi.androidanimations.common.CircularView
+      android:id="@+id/bottomStartButton"
+      android:layout_width="@dimen/min_tappable_size"
+      android:layout_height="@dimen/min_tappable_size"
+      android:layout_margin="@dimen/margin2x"
+      android:background="@color/molten"
+      android:clickable="true"
+      android:focusable="true"
+      android:transitionName="circularViewTransition"
+      app:layout_constraintEnd_toStartOf="@id/verticalGuideline"
+      app:layout_constraintTop_toBottomOf="@id/horizontalGuideline"
+      tools:ignore="UnusedAttribute" />
+
+    <com.karumi.androidanimations.common.CircularView
+      android:id="@+id/bottomEndButton"
+      android:layout_width="@dimen/min_tappable_size"
+      android:layout_height="@dimen/min_tappable_size"
+      android:layout_margin="@dimen/margin2x"
+      android:background="@color/gulava"
+      android:clickable="true"
+      android:focusable="true"
+      android:transitionName="circularViewTransition"
+      app:layout_constraintStart_toEndOf="@id/verticalGuideline"
+      app:layout_constraintTop_toBottomOf="@id/horizontalGuideline"
+      tools:ignore="UnusedAttribute" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

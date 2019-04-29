@@ -25,6 +25,9 @@
     <action
       android:id="@+id/action_mainFragment_to_layoutTransitionFragment"
       app:destination="@id/layoutTransitionFragment" />
+    <action
+      android:id="@+id/action_mainFragment_to_sharedElementsFragment"
+      app:destination="@id/sharedElementsFragment" />
   </fragment>
   <fragment
     android:id="@+id/viewAnimationFragment"
@@ -46,4 +49,41 @@
     android:id="@+id/layoutTransitionFragment"
     android:name="com.karumi.androidanimations.layouttransition.LayoutTransitionFragment"
     android:label="LayoutTransitionFragment" />
+  <fragment
+    android:id="@+id/sharedElementsFragment"
+    android:name="com.karumi.androidanimations.sharedelements.SharedElementsFragment"
+    android:label="SharedElementsFragment" >
+    <action
+      android:id="@+id/action_sharedElementsFragment_to_sharedImageTransitionFragment"
+      app:destination="@id/sharedImageTransitionFragment" />
+    <action
+      android:id="@+id/action_sharedElementsFragment_to_sharedBackgroundPathTransitionFragment"
+      app:destination="@id/sharedBackgroundPathTransitionFragment" />
+    <action
+      android:id="@+id/action_sharedElementsFragment_to_sharedElementsExerciseTransitionFragment"
+      app:destination="@id/sharedElementsExerciseTransitionFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/sharedImageTransitionFragment"
+    android:name="com.karumi.androidanimations.sharedelements.SharedImageTransitionFragment"
+    android:label="SharedImageTransitionFragment" >
+    <argument
+      android:name="avatarUrl"
+      app:argType="string" />
+    <argument
+      android:name="userFullName"
+      app:argType="string" />
+  </fragment>
+  <fragment
+    android:id="@+id/sharedBackgroundPathTransitionFragment"
+    android:name="com.karumi.androidanimations.sharedelements.SharedBackgroundPathTransitionFragment"
+    android:label="SharedBackgroundPathTransitionFragment" />
+  <fragment
+    android:id="@+id/sharedElementsExerciseTransitionFragment"
+    android:name="com.karumi.androidanimations.sharedelements.SharedElementsExerciseTransitionFragment"
+    android:label="SharedElementsExerciseTransitionFragment" >
+    <argument
+      android:name="color"
+      app:argType="com.karumi.androidanimations.sharedelements.SharedElementsExerciseTransition$Color" />
+  </fragment>
 </navigation>

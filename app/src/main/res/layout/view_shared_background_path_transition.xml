@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="80dp"
+  android:layout_margin="16dp">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/row"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bittersweet"
+    android:clickable="true"
+    android:focusable="true">
+
+    <com.karumi.androidanimations.common.CircularView
+      android:id="@+id/background"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/java"
+      android:transitionName="backgroundPathTransition"
+      tools:ignore="UnusedAttribute" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

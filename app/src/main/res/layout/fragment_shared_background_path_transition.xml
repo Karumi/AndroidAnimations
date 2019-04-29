@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/midGuideline"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.5" />
+
+
+  <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/bottomGuideline"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="1.5" />
+
+  <com.karumi.androidanimations.common.CircularView
+    android:id="@+id/background"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="@color/java"
+    android:transitionName="backgroundPathTransition"
+    app:layout_constraintBottom_toBottomOf="@id/bottomGuideline"
+    app:layout_constraintTop_toBottomOf="@id/midGuideline"
+    tools:ignore="UnusedAttribute" />
+</androidx.constraintlayout.widget.ConstraintLayout>
