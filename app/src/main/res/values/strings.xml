@@ -30,4 +30,5 @@
   <string name="layout_transition_fade">Fade</string>
   <string name="layout_transition_change_bounds">Change bounds</string>
   <string name="layout_transition_auto">Auto</string>
+  <string name="layout_transition_exercise">Exercise</string>
 </resources>

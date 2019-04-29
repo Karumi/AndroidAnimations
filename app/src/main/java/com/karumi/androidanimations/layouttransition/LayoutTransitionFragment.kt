@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_property_animation.*
 class LayoutTransitionFragment : BaseFragment() {
 
     val simpleLayoutTransitionBinder = SimpleLayoutTransition.Binder(::requireContext)
+    val exerciseLayoutTransitionBinder = ExerciseLayoutTransition.Binder(::requireContext)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +31,8 @@ class LayoutTransitionFragment : BaseFragment() {
     private fun configureAllAnimations() {
         val layoutManager = LinearLayoutManager(requireContext())
         val dataSource = dataSourceOf(
-            *LayoutTransition.values()
+            *LayoutTransition.values(),
+            Exercise
         )
 
         allAnimations.setup {
@@ -40,6 +42,12 @@ class LayoutTransitionFragment : BaseFragment() {
             withItem<LayoutTransition>(R.layout.view_simple_layout_transition) {
                 onBind(SimpleLayoutTransition::VH) { _, item ->
                     simpleLayoutTransitionBinder(this, item)
+                }
+            }
+
+            withItem<Exercise>(R.layout.view_exercise_layout_transition) {
+                onBind(ExerciseLayoutTransition::VH) { _, _ ->
+                    exerciseLayoutTransitionBinder(this)
                 }
             }
         }
