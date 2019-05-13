@@ -78,6 +78,10 @@ class SharedElementsFragment : BaseFragment() {
         color: SharedElementsExerciseTransition.Color,
         sharedElements: SharedElementsExerciseTransition.SharedElements
     ) {
+        sharedElementEnterTransition =
+            SharedElementsExerciseTransitionFragment.exitSharedElementTransition
+        exitTransition = SharedElementsExerciseTransitionFragment.defaultTransition
+
         val args = SharedElementsExerciseTransitionFragmentArgs(color)
 
         findNavController().navigate(
