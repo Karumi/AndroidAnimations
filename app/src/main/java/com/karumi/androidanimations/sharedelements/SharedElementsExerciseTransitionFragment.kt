@@ -6,16 +6,74 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.transition.ArcMotion
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeTransform
+import androidx.transition.Fade
+import androidx.transition.Transition
+import androidx.transition.TransitionListenerAdapter
+import androidx.transition.TransitionSet
 import com.karumi.androidanimations.R
 import com.karumi.androidanimations.base.BaseFragment
 import com.karumi.androidanimations.common.CircularView
+import com.karumi.androidanimations.common.GlobalPositionTransition
+import com.karumi.androidanimations.common.RadiusTransition
 import com.karumi.androidanimations.extensions.px
 import kotlinx.android.synthetic.main.fragment_shared_elements_exercise_transition.*
 
 class SharedElementsExerciseTransitionFragment : BaseFragment() {
+
+    companion object {
+        private const val easinessFactor = 1.2f
+
+        private val arcMotion = ArcMotion().apply {
+            minimumHorizontalAngle = 45f
+            minimumVerticalAngle = 45f
+        }
+
+        private val Transition.accelerated: Transition
+            get() {
+                interpolator = AccelerateInterpolator(easinessFactor)
+                return this
+            }
+
+        private val Transition.decelerated: Transition
+            get() {
+                interpolator = DecelerateInterpolator(easinessFactor)
+                return this
+            }
+
+        private val Transition.withArc: Transition
+            get() {
+                setPathMotion(arcMotion)
+                return this
+            }
+
+        val enterSharedElementTransition
+            get() = TransitionSet()
+                .addTransition(GlobalPositionTransition().accelerated.withArc)
+                .addTransition(RadiusTransition().decelerated)
+                .apply { ordering = TransitionSet.ORDERING_SEQUENTIAL }
+
+        val exitSharedElementTransition
+            get() = TransitionSet()
+                .addTransition(RadiusTransition().accelerated)
+                .addTransition(
+                    TransitionSet()
+                        .addTransition(ChangeBounds())
+                        .addTransition(ChangeTransform())
+                        .decelerated
+                        .withArc
+                ).apply { ordering = TransitionSet.ORDERING_SEQUENTIAL }
+
+        val defaultTransition get() = Fade()
+    }
 
     private val args: SharedElementsExerciseTransitionFragmentArgs by navArgs()
 
@@ -28,17 +86,11 @@ class SharedElementsExerciseTransitionFragment : BaseFragment() {
         container,
         false
     ).also {
+        enterTransition = defaultTransition
+        exitTransition = defaultTransition
+        sharedElementReturnTransition = exitSharedElementTransition
+        sharedElementEnterTransition = fadeInColorNameAfterTransitionFinishes()
         postponeEnterTransition()
-        TODO(
-            """
-            | Create a transition in this very same fragment that makes the selected CircularView
-            | transform into the background of this fragment. Use a PathMotion to make the view
-            | follow an arc.
-            | The circular view has to go to the top-left corner with its actual shape and once
-            | there it has to start animating its radius to cover the whole screen.
-            | Make the color name view appear with a slight up movement and a fade effect.
-        """.trimMargin()
-        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,6 +103,8 @@ class SharedElementsExerciseTransitionFragment : BaseFragment() {
             configureBackgroundView(background)
             startPostponedEnterTransition()
         }
+
+        fadeOutColorNameBeforeClosingFragment()
     }
 
     @SuppressLint("ResourceAsColor")
@@ -65,6 +119,37 @@ class SharedElementsExerciseTransitionFragment : BaseFragment() {
         ).toFloat()
         background.left -= offset
         background.top -= offset
+    }
+
+    private fun fadeInColorNameAfterTransitionFinishes() = enterSharedElementTransition.apply {
+        addListener(object : TransitionListenerAdapter() {
+            override fun onTransitionEnd(transition: Transition) {
+                colorName ?: return
+
+                colorName.animate()
+                    .alpha(1f)
+                    .translationY(0f)
+                    .start()
+            }
+        })
+    }
+
+    private fun fadeOutColorNameBeforeClosingFragment() {
+        requireActivity().onBackPressedDispatcher.addCallback {
+            val colorName = colorName ?: return@addCallback false
+            colorName.animate()
+                .alpha(0f)
+                .translationY(24.px.toFloat())
+                .apply { duration = 200 }
+                .withEndAction {
+                    colorName.visibility = View.GONE
+                    requireActivity()
+                        .findNavController(R.id.hostFragment)
+                        .popBackStack()
+                }
+                .start()
+            return@addCallback true
+        }
     }
 
     private val SharedElementsExerciseTransition.Color.backgroundView: CircularView?
