@@ -79,11 +79,12 @@ class SharedElementsFragment : BaseFragment() {
         sharedElements: SharedElementsExerciseTransition.SharedElements
     ) {
         val args = SharedElementsExerciseTransitionFragmentArgs(color)
+
         findNavController().navigate(
             R.id.action_sharedElementsFragment_to_sharedElementsExerciseTransitionFragment,
             args.toBundle(),
             null,
-            null
+            sharedElements(sharedElements.circularView)
         )
     }
 

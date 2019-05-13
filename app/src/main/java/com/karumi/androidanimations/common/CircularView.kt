@@ -27,13 +27,13 @@ class CircularView @JvmOverloads constructor(
     var centerX: Float
         get() = center.x
         set(value) {
-            center.x = value
+            center = PointF(value, center.y)
         }
 
     var centerY: Float
         get() = center.y
         set(value) {
-            center.y = value
+            center = PointF(center.x, value)
         }
 
     override fun draw(canvas: Canvas?) {

@@ -3,13 +3,38 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="match_parent"
+  android:clipChildren="false">
 
   <com.karumi.androidanimations.common.CircularView
-    android:id="@+id/background"
+    android:id="@+id/background1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:transitionName="circularViewTransition"
+    android:transitionName="circularViewTransition1"
+    tools:background="@color/bittersweet"
+    tools:ignore="UnusedAttribute" />
+
+  <com.karumi.androidanimations.common.CircularView
+    android:id="@+id/background2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionName="circularViewTransition2"
+    tools:background="@color/bittersweet"
+    tools:ignore="UnusedAttribute" />
+
+  <com.karumi.androidanimations.common.CircularView
+    android:id="@+id/background3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionName="circularViewTransition3"
+    tools:background="@color/bittersweet"
+    tools:ignore="UnusedAttribute" />
+
+  <com.karumi.androidanimations.common.CircularView
+    android:id="@+id/background4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionName="circularViewTransition4"
     tools:background="@color/bittersweet"
     tools:ignore="UnusedAttribute" />
 
@@ -17,11 +42,15 @@
     android:id="@+id/colorName"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:alpha="0"
     android:textAlignment="center"
     android:textColor="@color/white"
     android:textSize="24sp"
+    android:translationY="24dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:text="BitterSweet" />
+    tools:alpha="1"
+    tools:text="BitterSweet"
+    tools:translationY="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

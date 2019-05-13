@@ -33,7 +33,8 @@
       android:background="@color/bittersweet"
       android:clickable="true"
       android:focusable="true"
-      android:transitionName="circularViewTransition"
+      android:tag="1"
+      android:transitionName="circularViewTransition1"
       app:layout_constraintBottom_toTopOf="@id/horizontalGuideline"
       app:layout_constraintEnd_toStartOf="@id/verticalGuideline"
       tools:ignore="UnusedAttribute" />
@@ -46,7 +47,8 @@
       android:background="@color/java"
       android:clickable="true"
       android:focusable="true"
-      android:transitionName="circularViewTransition"
+      android:tag="2"
+      android:transitionName="circularViewTransition2"
       app:layout_constraintBottom_toTopOf="@id/horizontalGuideline"
       app:layout_constraintStart_toEndOf="@id/verticalGuideline"
       tools:ignore="UnusedAttribute" />
@@ -59,7 +61,8 @@
       android:background="@color/molten"
       android:clickable="true"
       android:focusable="true"
-      android:transitionName="circularViewTransition"
+      android:tag="3"
+      android:transitionName="circularViewTransition3"
       app:layout_constraintEnd_toStartOf="@id/verticalGuideline"
       app:layout_constraintTop_toBottomOf="@id/horizontalGuideline"
       tools:ignore="UnusedAttribute" />
@@ -72,7 +75,8 @@
       android:background="@color/gulava"
       android:clickable="true"
       android:focusable="true"
-      android:transitionName="circularViewTransition"
+      android:tag="4"
+      android:transitionName="circularViewTransition4"
       app:layout_constraintStart_toEndOf="@id/verticalGuideline"
       app:layout_constraintTop_toBottomOf="@id/horizontalGuideline"
       tools:ignore="UnusedAttribute" />

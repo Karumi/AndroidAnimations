@@ -3,6 +3,7 @@ package com.karumi.androidanimations.common
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.graphics.PointF
 import android.view.ViewGroup
 import androidx.transition.Transition
 import androidx.transition.TransitionValues
@@ -41,6 +42,9 @@ class RadiusTransition : Transition() {
         val radius = PropertyValuesHolder.ofFloat("radius", startRadius, endRadius)
         val centerX = PropertyValuesHolder.ofFloat("centerX", startCenterX, endCenterX)
         val centerY = PropertyValuesHolder.ofFloat("centerY", startCenterY, endCenterY)
+
+        circularView.radius = startRadius
+        circularView.center = PointF(startCenterX, startCenterY)
 
         return ObjectAnimator.ofPropertyValuesHolder(circularView, radius, centerX, centerY)
     }
