@@ -6,13 +6,12 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Path
-import android.graphics.PathMeasure
 import android.graphics.Point
-import android.os.Build
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
 import com.karumi.androidanimations.R
+import com.karumi.androidanimations.extensions.animatePath
 import com.karumi.androidanimations.propertyanimations.PropertyAnimationFragment.PropertyAnimation
 import kotlin.random.Random
 
@@ -110,33 +109,5 @@ interface PropertySimpleAnimation {
         private fun nextRandomColor(): Int = with(Random.Default) {
             Color.argb(255, nextInt(256), nextInt(256), nextInt(256))
         }
-
-        private fun animatePath(view: View, path: Path): ValueAnimator =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                ObjectAnimator.ofFloat(
-                    view,
-                    View.X,
-                    View.Y,
-                    path
-                ).apply {
-                    duration = 1000
-                    repeatCount = ValueAnimator.INFINITE
-                    repeatMode = ValueAnimator.REVERSE
-                }
-            } else {
-                val coordinates = FloatArray(2)
-                val pathMeasure = PathMeasure(path, true)
-                ValueAnimator.ofFloat(0f, pathMeasure.length).apply {
-                    duration = 1000
-                    repeatCount = ValueAnimator.INFINITE
-                    repeatMode = ValueAnimator.REVERSE
-                    addUpdateListener {
-                        val distance = it.animatedValue as Float
-                        pathMeasure.getPosTan(distance, coordinates, null)
-                        view.translationX = coordinates[0]
-                        view.translationY = coordinates[1]
-                    }
-                }
-            }
     }
 }
