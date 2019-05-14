@@ -12,7 +12,6 @@ import androidx.transition.Fade
 import androidx.transition.Scene
 import androidx.transition.Transition
 import androidx.transition.TransitionManager
-import androidx.transition.TransitionSet
 import com.karumi.androidanimations.R
 import com.karumi.androidanimations.layouttransition.LayoutTransitionFragment.LayoutTransition
 
@@ -58,9 +57,7 @@ interface SimpleLayoutTransition {
             get() = when (this) {
                 LayoutTransition.Fade -> Fade()
                 LayoutTransition.ChangeBounds -> ChangeBounds()
-                LayoutTransition.Auto -> AutoTransition().apply {
-                    this.ordering = TransitionSet.ORDERING_TOGETHER
-                }
+                LayoutTransition.Auto -> AutoTransition()
             }
 
         private fun animateToLayout(

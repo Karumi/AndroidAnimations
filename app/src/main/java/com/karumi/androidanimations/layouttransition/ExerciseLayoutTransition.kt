@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.transition.Scene
 import com.karumi.androidanimations.R
 
-class ExerciseLayoutTransition {
+interface ExerciseLayoutTransition {
     class VH(itemView: View) : com.afollestad.recyclical.ViewHolder(itemView) {
         val masterScene: ViewGroup = itemView.findViewById(R.id.masterScene)
     }
