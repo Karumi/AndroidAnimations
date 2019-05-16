@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.recyclical.datasource.dataSourceOf
 import com.afollestad.recyclical.setup
@@ -39,7 +40,12 @@ class CoordinatorLayoutFragment : BaseFragment() {
 
             withItem<Example>(R.layout.view_coordinator_layout_example) {
                 onBind(CoordinatorLayoutExample::VH) { _, item ->
-                    coordinatorLayoutExample(this, item)
+                    coordinatorLayoutExample(this, item) {
+                        val directions =
+                            CoordinatorLayoutFragmentDirections
+                                .actionCoordinatorLayoutFragmentToAnchorBasedBehaviorFragment()
+                        findNavController().navigate(directions)
+                    }
                 }
             }
         }

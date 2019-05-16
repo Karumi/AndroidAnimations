@@ -92,5 +92,13 @@
   <fragment
     android:id="@+id/coordinatorLayoutFragment"
     android:name="com.karumi.androidanimations.coordinatorlayout.CoordinatorLayoutFragment"
-    android:label="CoordinatorLayoutFragment" />
+    android:label="CoordinatorLayoutFragment" >
+    <action
+      android:id="@+id/action_coordinatorLayoutFragment_to_anchorBasedBehaviorFragment"
+      app:destination="@id/anchorBasedBehaviorFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/anchorBasedBehaviorFragment"
+    android:name="com.karumi.androidanimations.coordinatorlayout.AnchorBasedBehaviorFragment"
+    android:label="AnchorBasedBehaviorFragment" />
 </navigation>
