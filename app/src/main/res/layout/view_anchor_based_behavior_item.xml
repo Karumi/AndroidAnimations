@@ -6,6 +6,7 @@
   <View
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/margin2x"
     android:background="@color/bittersweet" />
 
 </androidx.cardview.widget.CardView>

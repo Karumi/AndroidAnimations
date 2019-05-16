@@ -16,6 +16,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun configureToolbar() {
         val navController = findNavController(R.id.hostFragment)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            collapsingToolbarLayout.isTitleEnabled = false
+            collapsingToolbarLayout.title = destination.label
+        }
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         toolbar.setupWithNavController(navController, appBarConfiguration)
     }
