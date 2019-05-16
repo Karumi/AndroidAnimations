@@ -28,6 +28,9 @@
     <action
       android:id="@+id/action_mainFragment_to_sharedElementsFragment"
       app:destination="@id/sharedElementsFragment" />
+    <action
+      android:id="@+id/action_mainFragment_to_coordinatorLayoutFragment"
+      app:destination="@id/coordinatorLayoutFragment" />
   </fragment>
   <fragment
     android:id="@+id/viewAnimationFragment"
@@ -86,4 +89,8 @@
       android:name="color"
       app:argType="com.karumi.androidanimations.sharedelements.SharedElementsExerciseTransition$Color" />
   </fragment>
+  <fragment
+    android:id="@+id/coordinatorLayoutFragment"
+    android:name="com.karumi.androidanimations.coordinatorlayout.CoordinatorLayoutFragment"
+    android:label="CoordinatorLayoutFragment" />
 </navigation>
