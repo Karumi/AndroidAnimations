@@ -23,7 +23,7 @@ interface CoordinatorLayoutExample {
 
         private fun VH.bind(item: CoordinatorLayoutFragment.Example, onClick: () -> Unit) {
             exampleName.text = when (item) {
-                CoordinatorLayoutFragment.Example.Anchor -> R.string.coordinator_layout_anchor
+                CoordinatorLayoutFragment.Example.Default -> R.string.coordinator_layout_default
             }.let { getContext().getString(it) }
             row.setOnClickListener { onClick() }
         }

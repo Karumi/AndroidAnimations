@@ -43,7 +43,7 @@ class CoordinatorLayoutFragment : BaseFragment() {
                     coordinatorLayoutExample(this, item) {
                         val directions =
                             CoordinatorLayoutFragmentDirections
-                                .actionCoordinatorLayoutFragmentToAnchorBasedBehaviorFragment()
+                                .actionCoordinatorLayoutFragmentToDefaultBehaviorFragment()
                         findNavController().navigate(directions)
                     }
                 }
@@ -52,6 +52,6 @@ class CoordinatorLayoutFragment : BaseFragment() {
     }
 
     enum class Example {
-        Anchor
+        Default
     }
 }

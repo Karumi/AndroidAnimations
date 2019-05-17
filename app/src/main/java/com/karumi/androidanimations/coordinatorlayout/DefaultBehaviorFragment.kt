@@ -1,5 +1,6 @@
 package com.karumi.androidanimations.coordinatorlayout
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,14 +19,15 @@ import com.karumi.androidanimations.R
 import com.karumi.androidanimations.base.BaseFragment
 import com.karumi.androidanimations.extensions.px
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_anchor_based_behavior.*
+import kotlinx.android.synthetic.main.fragment_default_behaviors.*
 
-class AnchorBasedBehaviorFragment : BaseFragment() {
+@SuppressLint("RestrictedApi")
+class DefaultBehaviorFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_anchor_based_behavior, container, false).also {
+    ): View? = inflater.inflate(R.layout.fragment_default_behaviors, container, false).also {
         setToolbarScrollFlags(SCROLL_FLAG_SCROLL or SCROLL_FLAG_SNAP or SCROLL_FLAG_ENTER_ALWAYS)
         setToolbarHeight(200.px)
         requireActivity().floatingActionButton.visibility = View.VISIBLE
@@ -68,7 +70,7 @@ class AnchorBasedBehaviorFragment : BaseFragment() {
             withLayoutManager(layoutManager)
             withDataSource(dataSource)
 
-            withItem<Item>(R.layout.view_anchor_based_behavior_item) {
+            withItem<Item>(R.layout.view_default_behaviors_item) {
                 onBind(::VH) { _, _ -> }
             }
         }
