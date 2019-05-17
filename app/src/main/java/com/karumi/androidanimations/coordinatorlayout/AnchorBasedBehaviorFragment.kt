@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.recyclical.datasource.dataSourceOf
@@ -27,6 +28,7 @@ class AnchorBasedBehaviorFragment : BaseFragment() {
     ): View? = inflater.inflate(R.layout.fragment_anchor_based_behavior, container, false).also {
         setToolbarScrollFlags(SCROLL_FLAG_SCROLL or SCROLL_FLAG_SNAP or SCROLL_FLAG_ENTER_ALWAYS)
         setToolbarHeight(200.px)
+        requireActivity().floatingActionButton.visibility = View.VISIBLE
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,7 +38,8 @@ class AnchorBasedBehaviorFragment : BaseFragment() {
 
     override fun onDestroyView() {
         setToolbarScrollFlags(0)
-        setToolbarHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+        setToolbarHeight(WRAP_CONTENT)
+        requireActivity().floatingActionButton.visibility = View.GONE
         super.onDestroyView()
     }
 

@@ -41,6 +41,19 @@
     android:layout_height="match_parent"
     app:defaultNavHost="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    app:navGraph="@navigation/navigation_graph" />
+    app:navGraph="@navigation/navigation_graph"
+    tools:layout="@layout/fragment_main" />
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/floatingActionButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/margin2x"
+    android:clickable="true"
+    android:focusable="true"
+    android:visibility="gone"
+    app:layout_anchor="@id/appBarLayout"
+    app:layout_anchorGravity="bottom|end"
+    tools:visibility="visible" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
