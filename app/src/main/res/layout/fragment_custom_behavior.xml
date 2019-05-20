@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/container"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/allItems"
+  <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="@dimen/margin2x"
-    android:paddingBottom="@dimen/margin2x"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:itemCount="4"
-    tools:layoutManager="LinearLayoutManager"
-    tools:listitem="@layout/view_custom_behavior_item"
-    tools:orientation="horizontal"
-    tools:scrollbars="horizontal" />
+    android:layout_height="match_parent">
 
-</FrameLayout>
+    <ImageView
+      android:id="@+id/header"
+      android:layout_width="match_parent"
+      android:layout_height="200dp"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:background="@color/java"
+      tools:ignore="ContentDescription" />
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/allItems"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:paddingTop="@dimen/margin2x"
+      android:paddingBottom="@dimen/margin2x"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/header"
+      tools:itemCount="4"
+      tools:layoutManager="LinearLayoutManager"
+      tools:listitem="@layout/view_custom_behavior_item"
+      tools:orientation="horizontal"
+      tools:scrollbars="horizontal" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

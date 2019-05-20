@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.afollestad.recyclical.ViewHolder
 import com.afollestad.recyclical.datasource.dataSourceOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
@@ -62,9 +63,7 @@ class DefaultBehaviorFragment : BaseFragment() {
 
     private fun configureItems() {
         val layoutManager = LinearLayoutManager(requireContext())
-        val dataSource = dataSourceOf(
-            *(0..100).map { Item }.toTypedArray()
-        )
+        val dataSource = dataSourceOf((0..100).map { Item })
 
         allItems.setup {
             withLayoutManager(layoutManager)
@@ -76,7 +75,6 @@ class DefaultBehaviorFragment : BaseFragment() {
         }
     }
 
-    class VH(itemView: View) : com.afollestad.recyclical.ViewHolder(itemView)
-
+    class VH(itemView: View) : ViewHolder(itemView)
     object Item
 }
