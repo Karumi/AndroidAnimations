@@ -1,18 +1,21 @@
 package com.karumi.androidanimations.coordinatorlayout
 
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Matrix
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Scroller
 import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.recyclical.ViewHolder
 import com.afollestad.recyclical.datasource.dataSourceOf
@@ -21,6 +24,7 @@ import com.afollestad.recyclical.withItem
 import com.karumi.androidanimations.R
 import com.karumi.androidanimations.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_custom_behavior.*
+
 
 @SuppressLint("RestrictedApi")
 class CustomBehaviorFragment : BaseFragment() {
@@ -35,7 +39,7 @@ class CustomBehaviorFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-        val dataSource = dataSourceOf((0..100).map { Item(it) })
+        val dataSource = dataSourceOf((0..10).map { Item(it) })
 
         allItems.setup {
             withLayoutManager(layoutManager)
@@ -47,8 +51,21 @@ class CustomBehaviorFragment : BaseFragment() {
             }
         }
 
-        val pagerSnapHelper = LinearSnapHelper()
-        pagerSnapHelper.attachToRecyclerView(allItems)
+        val dividerItemDecoration = object : DividerItemDecoration(
+            requireContext(),
+            layoutManager.orientation
+        ) {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                super.getItemOffsets(outRect, view, parent, state)
+                outRect.right = requireContext().resources.getDimension(R.dimen.margin4x).toInt()
+            }
+        }
+        allItems.addItemDecoration(dividerItemDecoration)
     }
 
     class VH(itemView: View) : ViewHolder(itemView) {
@@ -62,6 +79,11 @@ class ParallaxBehavior(
     context: Context,
     attrs: AttributeSet
 ) : CoordinatorLayout.Behavior<ImageView>(context, attrs) {
+
+    private val parallaxFactor = 0.2f
+    private var isAnimatingFling = false
+    private var previousX = 0
+
     override fun onStartNestedScroll(
         coordinatorLayout: CoordinatorLayout,
         child: ImageView,
@@ -70,7 +92,7 @@ class ParallaxBehavior(
         axes: Int,
         type: Int
     ): Boolean {
-        Log.d("GERSIO", "Axes: $axes - Type: $type")
+        isAnimatingFling = false
         return true
     }
 
@@ -84,7 +106,9 @@ class ParallaxBehavior(
         dyUnconsumed: Int,
         type: Int
     ) {
-        Log.d("GERSIO", "scroll: $dxConsumed - $dxUnconsumed - $type")
+        val matrix = Matrix(child.imageMatrix)
+        matrix.postTranslate(-parallaxFactor * dxConsumed.toFloat(), -dyConsumed.toFloat())
+        child.imageMatrix = matrix
     }
 
     override fun onNestedFling(
@@ -95,7 +119,47 @@ class ParallaxBehavior(
         velocityY: Float,
         consumed: Boolean
     ): Boolean {
-        Log.d("GERSIO", "fling: $velocityX")
-        return super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed)
+        val recyclerView = target as RecyclerView
+        val canScroll = recyclerView.canScrollHorizontally(velocityX.toInt())
+
+        if (!canScroll) {
+            return false
+        }
+
+        val scroller = Scroller(coordinatorLayout.context)
+        scroller.fling(
+            0,
+            0,
+            velocityX.toInt(),
+            velocityY.toInt(),
+            0,
+            0,
+            Int.MIN_VALUE,
+            Int.MAX_VALUE
+        )
+
+        previousX = 0
+        isAnimatingFling = true
+        ValueAnimator.ofFloat(0f, 1f)
+            .apply {
+                duration = scroller.duration.toLong()
+                start()
+            }
+            .addUpdateListener {
+                if (!isAnimatingFling) {
+                    it.cancel()
+                    return@addUpdateListener
+                }
+
+                scroller.computeScrollOffset()
+                val matrix = Matrix(child.imageMatrix)
+                val currX = scroller.currX
+                val xDiff = currX - previousX.toFloat()
+                matrix.postTranslate(-parallaxFactor * xDiff, 0f)
+                child.imageMatrix = matrix
+                previousX = currX
+            }
+        return true
     }
+
 }

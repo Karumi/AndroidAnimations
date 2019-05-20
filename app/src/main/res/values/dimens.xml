@@ -2,4 +2,5 @@
 <resources>
   <dimen name="min_tappable_size">48dp</dimen>
   <dimen name="margin2x">16dp</dimen>
+  <dimen name="margin4x">32dp</dimen>
 </resources>
