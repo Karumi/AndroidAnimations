@@ -6,31 +6,26 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <androidx.constraintlayout.widget.ConstraintLayout
+  <ImageView
+    android:id="@+id/header"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="200dp"
+    android:scaleType="centerCrop"
+    android:src="@drawable/landscape"
+    app:layout_behavior="com.karumi.androidanimations.coordinatorlayout.ParallaxBehavior"
+    tools:background="@color/java"
+    tools:ignore="ContentDescription" />
 
-    <ImageView
-      android:id="@+id/header"
-      android:layout_width="match_parent"
-      android:layout_height="200dp"
-      app:layout_constraintTop_toTopOf="parent"
-      tools:background="@color/java"
-      tools:ignore="ContentDescription" />
-
-    <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/allItems"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:paddingTop="@dimen/margin2x"
-      android:paddingBottom="@dimen/margin2x"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/header"
-      tools:itemCount="4"
-      tools:layoutManager="LinearLayoutManager"
-      tools:listitem="@layout/view_custom_behavior_item"
-      tools:orientation="horizontal"
-      tools:scrollbars="horizontal" />
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/allItems"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="216dp"
+    android:paddingBottom="@dimen/margin2x"
+    tools:itemCount="4"
+    tools:layoutManager="LinearLayoutManager"
+    tools:listitem="@layout/view_custom_behavior_item"
+    tools:orientation="horizontal"
+    tools:scrollbars="horizontal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

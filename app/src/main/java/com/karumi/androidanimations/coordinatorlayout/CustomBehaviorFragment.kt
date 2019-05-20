@@ -1,13 +1,18 @@
 package com.karumi.androidanimations.coordinatorlayout
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.recyclical.ViewHolder
 import com.afollestad.recyclical.datasource.dataSourceOf
@@ -42,7 +47,7 @@ class CustomBehaviorFragment : BaseFragment() {
             }
         }
 
-        val pagerSnapHelper = PagerSnapHelper()
+        val pagerSnapHelper = LinearSnapHelper()
         pagerSnapHelper.attachToRecyclerView(allItems)
     }
 
@@ -51,4 +56,46 @@ class CustomBehaviorFragment : BaseFragment() {
     }
 
     data class Item(val id: Int)
+}
+
+class ParallaxBehavior(
+    context: Context,
+    attrs: AttributeSet
+) : CoordinatorLayout.Behavior<ImageView>(context, attrs) {
+    override fun onStartNestedScroll(
+        coordinatorLayout: CoordinatorLayout,
+        child: ImageView,
+        directTargetChild: View,
+        target: View,
+        axes: Int,
+        type: Int
+    ): Boolean {
+        Log.d("GERSIO", "Axes: $axes - Type: $type")
+        return true
+    }
+
+    override fun onNestedScroll(
+        coordinatorLayout: CoordinatorLayout,
+        child: ImageView,
+        target: View,
+        dxConsumed: Int,
+        dyConsumed: Int,
+        dxUnconsumed: Int,
+        dyUnconsumed: Int,
+        type: Int
+    ) {
+        Log.d("GERSIO", "scroll: $dxConsumed - $dxUnconsumed - $type")
+    }
+
+    override fun onNestedFling(
+        coordinatorLayout: CoordinatorLayout,
+        child: ImageView,
+        target: View,
+        velocityX: Float,
+        velocityY: Float,
+        consumed: Boolean
+    ): Boolean {
+        Log.d("GERSIO", "fling: $velocityX")
+        return super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed)
+    }
 }
