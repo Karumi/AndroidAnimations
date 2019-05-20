@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.View
 import android.widget.TextView
 import com.karumi.androidanimations.R
+import com.karumi.androidanimations.coordinatorlayout.CoordinatorLayoutFragment.Example.Default
+import com.karumi.androidanimations.coordinatorlayout.CoordinatorLayoutFragment.Example.Custom
 
 
 interface CoordinatorLayoutExample {
@@ -23,7 +25,8 @@ interface CoordinatorLayoutExample {
 
         private fun VH.bind(item: CoordinatorLayoutFragment.Example, onClick: () -> Unit) {
             exampleName.text = when (item) {
-                CoordinatorLayoutFragment.Example.Default -> R.string.coordinator_layout_default
+                Default -> R.string.coordinator_layout_default
+                Custom -> R.string.coordinator_custom_behavior
             }.let { getContext().getString(it) }
             row.setOnClickListener { onClick() }
         }

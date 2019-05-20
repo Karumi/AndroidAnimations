@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/navigation_graph.xml"
   app:startDestination="@id/mainFragment">
 
   <fragment
     android:id="@+id/mainFragment"
     android:name="com.karumi.androidanimations.MainFragment"
-    android:label="@string/app_name">
+    android:label="@string/app_name"
+    tools:layout="@layout/fragment_main">
     <action
       android:id="@+id/action_mainFragment_to_viewAnimatorFragment"
       app:destination="@id/viewAnimationFragment"
@@ -35,27 +37,33 @@
   <fragment
     android:id="@+id/viewAnimationFragment"
     android:name="com.karumi.androidanimations.viewanimator.ViewAnimationFragment"
-    android:label="@string/section_view_animation_framework" />
+    android:label="@string/section_view_animation_framework"
+    tools:layout="@layout/fragment_view_animation" />
   <fragment
     android:id="@+id/propertyAnimationFragment"
     android:name="com.karumi.androidanimations.propertyanimations.PropertyAnimationFragment"
-    android:label="@string/section_property_animation_framework" />
+    android:label="@string/section_property_animation_framework"
+    tools:layout="@layout/fragment_property_animation" />
   <fragment
     android:id="@+id/drawableGraphicsAnimationFragment"
     android:name="com.karumi.androidanimations.drawablegraphicsanimation.DrawableGraphicsAnimationFragment"
-    android:label="@string/section_animated_vector_drawable" />
+    android:label="@string/section_animated_vector_drawable"
+    tools:layout="@layout/fragment_animated_drawable_graphics" />
   <fragment
     android:id="@+id/pathDrawingFragment"
     android:name="com.karumi.androidanimations.pathdrawing.PathDrawingFragment"
-    android:label="@string/section_path_drawing" />
+    android:label="@string/section_path_drawing"
+    tools:layout="@layout/fragment_path_drawing" />
   <fragment
     android:id="@+id/layoutTransitionFragment"
     android:name="com.karumi.androidanimations.layouttransition.LayoutTransitionFragment"
-    android:label="@string/section_layout_transition" />
+    android:label="@string/section_layout_transition"
+    tools:layout="@layout/fragment_layout_transition" />
   <fragment
     android:id="@+id/sharedElementsFragment"
     android:name="com.karumi.androidanimations.sharedelements.SharedElementsFragment"
-    android:label="@string/section_shared_elements">
+    android:label="@string/section_shared_elements"
+    tools:layout="@layout/fragment_shared_elements">
     <action
       android:id="@+id/action_sharedElementsFragment_to_sharedImageTransitionFragment"
       app:destination="@id/sharedImageTransitionFragment" />
@@ -69,7 +77,8 @@
   <fragment
     android:id="@+id/sharedImageTransitionFragment"
     android:name="com.karumi.androidanimations.sharedelements.SharedImageTransitionFragment"
-    android:label="@string/section_shared_elements">
+    android:label="@string/section_shared_elements"
+    tools:layout="@layout/fragment_shared_image_transition">
     <argument
       android:name="avatarUrl"
       app:argType="string" />
@@ -80,11 +89,13 @@
   <fragment
     android:id="@+id/sharedBackgroundPathTransitionFragment"
     android:name="com.karumi.androidanimations.sharedelements.SharedBackgroundPathTransitionFragment"
-    android:label="@string/shared_image_transition_title" />
+    android:label="@string/shared_image_transition_title"
+    tools:layout="@layout/fragment_shared_background_path_transition" />
   <fragment
     android:id="@+id/sharedElementsExerciseTransitionFragment"
     android:name="com.karumi.androidanimations.sharedelements.SharedElementsExerciseTransitionFragment"
-    android:label="@string/shared_image_transition">
+    android:label="@string/shared_image_transition"
+    tools:layout="@layout/fragment_shared_elements_exercise_transition">
     <argument
       android:name="color"
       app:argType="com.karumi.androidanimations.sharedelements.SharedElementsExerciseTransition$Color" />
@@ -92,13 +103,23 @@
   <fragment
     android:id="@+id/coordinatorLayoutFragment"
     android:name="com.karumi.androidanimations.coordinatorlayout.CoordinatorLayoutFragment"
-    android:label="@string/section_coordinator_layout">
+    android:label="@string/section_coordinator_layout"
+    tools:layout="@layout/fragment_coordinator_layout">
     <action
       android:id="@+id/action_coordinatorLayoutFragment_to_defaultBehaviorFragment"
       app:destination="@id/defaultBehaviorFragment" />
+    <action
+      android:id="@+id/action_coordinatorLayoutFragment_to_customBehaviorFragment"
+      app:destination="@id/customBehaviorFragment" />
   </fragment>
   <fragment
     android:id="@+id/defaultBehaviorFragment"
     android:name="com.karumi.androidanimations.coordinatorlayout.DefaultBehaviorFragment"
-    android:label="@string/coordinator_layout_default" />
+    android:label="@string/coordinator_layout_default"
+    tools:layout="@layout/fragment_default_behaviors" />
+  <fragment
+    android:id="@+id/customBehaviorFragment"
+    android:name="com.karumi.androidanimations.coordinatorlayout.CustomBehaviorFragment"
+    android:label="@string/coordinator_custom_behavior"
+    tools:layout="@layout/fragment_custom_behavior" />
 </navigation>

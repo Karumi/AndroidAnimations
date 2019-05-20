@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/container"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/allItems"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/margin2x"
+    android:paddingBottom="@dimen/margin2x"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:itemCount="4"
+    tools:layoutManager="LinearLayoutManager"
+    tools:listitem="@layout/view_custom_behavior_item"
+    tools:orientation="horizontal"
+    tools:scrollbars="horizontal" />
+
+</FrameLayout>

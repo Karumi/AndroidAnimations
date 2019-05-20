@@ -41,9 +41,12 @@ class CoordinatorLayoutFragment : BaseFragment() {
             withItem<Example>(R.layout.view_coordinator_layout_example) {
                 onBind(CoordinatorLayoutExample::VH) { _, item ->
                     coordinatorLayoutExample(this, item) {
-                        val directions =
-                            CoordinatorLayoutFragmentDirections
+                        val directions = when (item) {
+                            Example.Default -> CoordinatorLayoutFragmentDirections
                                 .actionCoordinatorLayoutFragmentToDefaultBehaviorFragment()
+                            Example.Custom -> CoordinatorLayoutFragmentDirections
+                                .actionCoordinatorLayoutFragmentToCustomBehaviorFragment()
+                        }
                         findNavController().navigate(directions)
                     }
                 }
@@ -52,6 +55,6 @@ class CoordinatorLayoutFragment : BaseFragment() {
     }
 
     enum class Example {
-        Default
+        Default, Custom
     }
 }
