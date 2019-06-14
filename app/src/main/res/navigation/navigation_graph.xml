@@ -111,6 +111,9 @@
     <action
       android:id="@+id/action_coordinatorLayoutFragment_to_customBehaviorFragment"
       app:destination="@id/customBehaviorFragment" />
+    <action
+      android:id="@+id/action_coordinatorLayoutFragment_to_coordinatorLayoutExerciseFragment"
+      app:destination="@id/coordinatorLayoutExerciseFragment" />
   </fragment>
   <fragment
     android:id="@+id/defaultBehaviorFragment"
@@ -122,4 +125,9 @@
     android:name="com.karumi.androidanimations.coordinatorlayout.CustomBehaviorFragment"
     android:label="@string/coordinator_custom_behavior"
     tools:layout="@layout/fragment_custom_behavior" />
+  <fragment
+    android:id="@+id/coordinatorLayoutExerciseFragment"
+    android:name="com.karumi.androidanimations.coordinatorlayout.CoordinatorLayoutExerciseFragment"
+    android:label="@string/coordinator_exercise"
+    tools:layout="@layout/fragment_coordinator_layout_exercise"/>
 </navigation>

@@ -46,4 +46,5 @@
 
   <string name="coordinator_layout_default">Default behaviors</string>
   <string name="coordinator_custom_behavior">Custom behavior</string>
+  <string name="coordinator_exercise">Exercise</string>
 </resources>

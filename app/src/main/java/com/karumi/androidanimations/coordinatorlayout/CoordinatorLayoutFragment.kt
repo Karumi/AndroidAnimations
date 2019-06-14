@@ -46,6 +46,8 @@ class CoordinatorLayoutFragment : BaseFragment() {
                                 .actionCoordinatorLayoutFragmentToDefaultBehaviorFragment()
                             Example.Custom -> CoordinatorLayoutFragmentDirections
                                 .actionCoordinatorLayoutFragmentToCustomBehaviorFragment()
+                            Example.Exercise -> CoordinatorLayoutFragmentDirections
+                                .actionCoordinatorLayoutFragmentToCoordinatorLayoutExerciseFragment()
                         }
                         findNavController().navigate(directions)
                     }
@@ -55,6 +57,6 @@ class CoordinatorLayoutFragment : BaseFragment() {
     }
 
     enum class Example {
-        Default, Custom
+        Default, Custom, Exercise
     }
 }
