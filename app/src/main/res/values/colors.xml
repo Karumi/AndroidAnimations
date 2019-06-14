@@ -5,11 +5,11 @@
   <color name="black">#000000</color>
   <color name="white">#FFFFFF</color>
   <color name="white_50">#7DFFFFFF</color>
-  <color name="colorPrimary">#008577</color>
-  <color name="colorPrimaryDark">#00574B</color>
-  <color name="colorAccent">#D81B60</color>
-  <color name="bittersweet">#FF6865</color>
-  <color name="bittersweet_50">#7DFF6865</color>
+  <color name="colorPrimary">#1CA7FA</color>
+  <color name="colorPrimaryDark">#0972B0</color>
+  <color name="colorAccent">#FFF261</color>
+  <color name="bittersweet">#FF5CA7</color>
+  <color name="bittersweet_50">#7DFF5CA7</color>
   <color name="java">#1fE5B3</color>
   <color name="molten">#F3F5B3</color>
   <color name="gulava">#6573FD</color>
