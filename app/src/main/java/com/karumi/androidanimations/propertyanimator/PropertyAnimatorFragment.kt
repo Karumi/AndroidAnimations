@@ -45,7 +45,7 @@ class PropertyAnimatorFragment : BaseFragment() {
                     propertySimpleAnimationBinder(this, item)
                 }
             }
-            withItem<Exercise>(R.layout.view_exercise_property_animation) {
+            withItem<Exercise>(R.layout.view_exercise_property_animator) {
                 onBind(PropertyExerciseAnimator::VH) { _, _ ->
                     propertyExerciseAnimationBinder(this)
                 }
