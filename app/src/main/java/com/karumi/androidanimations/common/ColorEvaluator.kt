@@ -7,7 +7,7 @@ import android.animation.ValueAnimator
 /*
  See https://gist.github.com/aritraroy/f5aac68cf42e83270d71f9bf58fac19c
  */
-class GammaEvaluator : TypeEvaluator<Int> {
+class ColorEvaluator : TypeEvaluator<Int> {
 
     override fun evaluate(fraction: Float, startValue: Int, endValue: Int): Int {
         val startA = (startValue shr 24 and 0xff) / 255.0f
@@ -49,13 +49,13 @@ class GammaEvaluator : TypeEvaluator<Int> {
     companion object {
 
         /**
-         * Returns an instance of `GammaEvaluator` that may be used in
+         * Returns an instance of `ColorEvaluator` that may be used in
          * [ValueAnimator.setEvaluator]. The same instance may
          * be used in multiple `Animator`s because it holds no state.
          *
-         * @return An instance of `GammaEvaluator`.
+         * @return An instance of `ColorEvaluator`.
          */
-        val instance = GammaEvaluator()
+        val instance = ColorEvaluator()
 
         /**
          * Opto-electronic conversion function for the sRGB color space
