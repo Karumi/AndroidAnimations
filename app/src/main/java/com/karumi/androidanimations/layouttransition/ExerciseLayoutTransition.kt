@@ -1,11 +1,18 @@
 package com.karumi.androidanimations.layouttransition
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.annotation.LayoutRes
+import androidx.transition.ChangeBounds
 import androidx.transition.Scene
+import androidx.transition.Transition
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
+import androidx.transition.TransitionValues
 import com.karumi.androidanimations.R
 
 interface ExerciseLayoutTransition {
@@ -54,16 +61,42 @@ interface ExerciseLayoutTransition {
                     }
             }
 
-            TODO(
-                """
-                | Create a custom Transition to rotate views automatically if their "rotation"
-                | property changes.
-                |
-                | Use TransitionManager to animate views to the configured scene above.
-                | Remember the animation has to rotate the current view with your own implementation
-                | of a sharedElementTransition and move to the right position.
-                """.trimMargin()
+            TransitionManager.go(
+                scene,
+                TransitionSet()
+                    .addTransition(RotateTransition())
+                    .addTransition(ChangeBounds())
             )
         }
+    }
+}
+
+class RotateTransition : Transition() {
+    companion object {
+        private const val ROTATION_KEY = "androidanimations:rotation:rotation"
+    }
+
+    override fun captureStartValues(transitionValues: TransitionValues) {
+        val rotation = transitionValues.view.rotation
+        transitionValues.values[ROTATION_KEY] = rotation
+    }
+
+    override fun captureEndValues(transitionValues: TransitionValues) {
+        val rotation = transitionValues.view.rotation
+        transitionValues.values[ROTATION_KEY] = rotation
+    }
+
+    override fun createAnimator(
+        sceneRoot: ViewGroup,
+        startValues: TransitionValues?,
+        endValues: TransitionValues?
+    ): Animator? {
+        startValues ?: return null
+        endValues ?: return null
+
+        val startRotation = startValues.values.getOrElse(ROTATION_KEY, { 0f }) as Float
+        val endRotation = endValues.values.getOrElse(ROTATION_KEY, { 0f }) as Float
+
+        return ObjectAnimator.ofFloat(endValues.view, View.ROTATION, startRotation, endRotation)
     }
 }
