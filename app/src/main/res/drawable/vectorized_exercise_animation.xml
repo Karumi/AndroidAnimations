@@ -1,0 +1,59 @@
+<animated-vector xmlns:tools="http://schemas.android.com/tools"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  tools:ignore="NewApi">
+  <aapt:attr name="android:drawable">
+    <vector
+      android:name="vector"
+      android:width="100dp"
+      android:height="100dp"
+      android:viewportWidth="100"
+      android:viewportHeight="100">
+      <path
+        android:name="bottom"
+        android:fillType="evenOdd"
+        android:pathData="M 50 5 C 38.07 5 26.616 9.744 18.18 18.18 C 9.744 26.616 5 38.07 5 50 C 5 61.93 9.744 73.384 18.18 81.82 C 26.616 90.256 38.07 95 50 95 C 61.93 95 73.384 90.256 81.82 81.82 C 90.256 73.384 95 61.93 95 50 C 95 38.07 90.256 26.616 81.82 18.18 C 73.384 9.744 61.93 5 50 5 Z"
+        android:strokeWidth="10"
+        android:strokeAlpha="0.1"
+        android:strokeColor="#000000" />
+      <path
+        android:name="top"
+        android:fillType="evenOdd"
+        android:pathData="M 50 5 C 38.07 5 26.616 9.744 18.18 18.18 C 9.744 26.616 5 38.07 5 50 C 5 61.93 9.744 73.384 18.18 81.82 C 26.616 90.256 38.07 95 50 95 C 61.93 95 73.384 90.256 81.82 81.82 C 90.256 73.384 95 61.93 95 50 C 95 38.07 90.256 26.616 81.82 18.18 C 73.384 9.744 61.93 5 50 5 Z"
+        android:strokeWidth="10"
+        android:strokeColor="#45c9fb"
+        android:strokeLineCap="round"
+        android:trimPathStart="0.95"
+        android:trimPathOffset="0.75" />
+    </vector>
+  </aapt:attr>
+  <target android:name="top">
+    <aapt:attr name="android:animation">
+      <set>
+        <objectAnimator
+          android:duration="808"
+          android:interpolator="@android:interpolator/fast_out_slow_in"
+          android:propertyName="trimPathStart"
+          android:valueFrom="0.95"
+          android:valueTo="0"
+          android:valueType="floatType" />
+        <objectAnimator
+          android:duration="867"
+          android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+          android:propertyName="trimPathEnd"
+          android:startOffset="479"
+          android:valueFrom="1"
+          android:valueTo="0"
+          android:valueType="floatType" />
+        <objectAnimator
+          android:duration="145"
+          android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+          android:propertyName="trimPathStart"
+          android:startOffset="1201"
+          android:valueFrom="1"
+          android:valueTo="0.95"
+          android:valueType="floatType" />
+      </set>
+    </aapt:attr>
+  </target>
+</animated-vector>
