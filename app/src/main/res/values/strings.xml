@@ -8,6 +8,7 @@
   <string name="section_layout_transition">Layout transition</string>
   <string name="section_shared_elements">Shared elements</string>
   <string name="section_coordinator_layout">Coordinator layout</string>
+  <string name="section_motion_layout">Motion layout</string>
 
   <string name="view_animation_alpha">AlphaAnimation</string>
   <string name="view_animation_rotate">RotateAnimation</string>

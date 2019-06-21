@@ -33,6 +33,9 @@
     <action
       android:id="@+id/action_mainFragment_to_coordinatorLayoutFragment"
       app:destination="@id/coordinatorLayoutFragment" />
+    <action
+      android:id="@+id/action_mainFragment_to_motionLayoutFragment"
+      app:destination="@id/motionLayoutFragment" />
   </fragment>
   <fragment
     android:id="@+id/viewAnimationFragment"
@@ -129,5 +132,10 @@
     android:id="@+id/coordinatorLayoutExerciseFragment"
     android:name="com.karumi.androidanimations.coordinatorlayout.CoordinatorLayoutExerciseFragment"
     android:label="@string/coordinator_exercise"
-    tools:layout="@layout/fragment_coordinator_layout_exercise"/>
+    tools:layout="@layout/fragment_coordinator_layout_exercise" />
+  <fragment
+    android:id="@+id/motionLayoutFragment"
+    android:name="com.karumi.androidanimations.motionlayout.MotionLayoutFragment"
+    android:label="MotionLayoutFragment"
+    tools:layout="@layout/fragment_motion_layout" />
 </navigation>

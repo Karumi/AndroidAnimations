@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
@@ -135,21 +136,23 @@ class SharedElementsExerciseTransitionFragment : BaseFragment() {
     }
 
     private fun fadeOutColorNameBeforeClosingFragment() {
-        requireActivity().onBackPressedDispatcher.addCallback {
-            val colorName = colorName ?: return@addCallback false
-            colorName.animate()
-                .alpha(0f)
-                .translationY(24.px.toFloat())
-                .apply { duration = 200 }
-                .withEndAction {
-                    colorName.visibility = View.GONE
-                    requireActivity()
-                        .findNavController(R.id.hostFragment)
-                        .popBackStack()
-                }
-                .start()
-            return@addCallback true
-        }
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val colorName = colorName ?: return
+                colorName.animate()
+                    .alpha(0f)
+                    .translationY(24.px.toFloat())
+                    .apply { duration = 200 }
+                    .withEndAction {
+                        colorName.visibility = View.GONE
+                        requireActivity()
+                            .findNavController(R.id.hostFragment)
+                            .popBackStack()
+                    }
+                    .start()
+                return
+            }
+        })
     }
 
     private val SharedElementsExerciseTransition.Color.backgroundView: CircularView?

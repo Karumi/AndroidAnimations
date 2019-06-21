@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.AutoTransition
@@ -74,20 +75,22 @@ class SharedImageTransitionFragment : BaseFragment() {
     }
 
     private fun fadeOutGradientViewBeforeClosingFragment() {
-        requireActivity().onBackPressedDispatcher.addCallback {
-            val userNameGradient = userNameGradient ?: return@addCallback false
-            userNameGradient.animate()
-                .alpha(0f)
-                .apply { duration = 20 }
-                .withEndAction {
-                    userNameGradient.visibility = View.GONE
-                    requireActivity()
-                        .findNavController(R.id.hostFragment)
-                        .popBackStack()
-                }
-                .start()
-            return@addCallback true
-        }
+        requireActivity().onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val userNameGradient = userNameGradient ?: return
+                userNameGradient.animate()
+                    .alpha(0f)
+                    .apply { duration = 20 }
+                    .withEndAction {
+                        userNameGradient.visibility = View.GONE
+                        requireActivity()
+                            .findNavController(R.id.hostFragment)
+                            .popBackStack()
+                    }
+                    .start()
+                return
+            }
+        })
     }
 
     private fun configureViews() {
