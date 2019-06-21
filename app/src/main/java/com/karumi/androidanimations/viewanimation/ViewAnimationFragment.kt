@@ -1,4 +1,4 @@
-package com.karumi.androidanimations.propertyanimations
+package com.karumi.androidanimations.viewanimation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,13 +10,12 @@ import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
 import com.karumi.androidanimations.R
 import com.karumi.androidanimations.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_property_animation.*
+import kotlinx.android.synthetic.main.fragment_view_animation.*
 
+class ViewAnimationFragment : BaseFragment() {
 
-class PropertyAnimationFragment : BaseFragment() {
-
-    val propertySimpleAnimationBinder = PropertySimpleAnimation.Binder(::requireContext)
-    val propertyExerciseAnimationBinder = PropertyExerciseAnimation.Binder(::requireContext)
+    val simpleAnimationBinder = ViewSimpleAnimation.Binder(::requireContext)
+    val animationSetBinder = ViewExerciseAnimation.Binder(::requireContext)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +31,7 @@ class PropertyAnimationFragment : BaseFragment() {
     private fun configureAllAnimations() {
         val layoutManager = LinearLayoutManager(requireContext())
         val dataSource = dataSourceOf(
-            *PropertyAnimation.values(),
+            *SimpleAnimation.values(),
             Exercise
         )
 
@@ -40,21 +39,18 @@ class PropertyAnimationFragment : BaseFragment() {
             withLayoutManager(layoutManager)
             withDataSource(dataSource)
 
-            withItem<PropertyAnimation>(R.layout.view_simple_property_animation) {
-                onBind(PropertySimpleAnimation::VH) { _, item ->
-                    propertySimpleAnimationBinder(this, item)
-                }
+            withItem<SimpleAnimation>(R.layout.view_simple_view_animation) {
+                onBind(ViewSimpleAnimation::VH) { _, item -> simpleAnimationBinder(this, item) }
             }
-            withItem<Exercise>(R.layout.view_exercise_property_animation) {
-                onBind(PropertyExerciseAnimation::VH) { _, _ ->
-                    propertyExerciseAnimationBinder(this)
-                }
+
+            withItem<Exercise>(R.layout.view_exercise_view_animation) {
+                onBind(ViewExerciseAnimation::VH) { _, _ -> animationSetBinder(this) }
             }
         }
     }
 
-    enum class PropertyAnimation {
-        Translate, Path, AnimatorSet
+    enum class SimpleAnimation {
+        Alpha, Rotate, Scale, Translate
     }
 
     object Exercise

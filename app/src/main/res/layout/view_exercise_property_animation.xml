@@ -27,7 +27,7 @@
       android:id="@+id/switchBackground"
       android:layout_width="80dp"
       android:layout_height="40dp"
-      android:background="@drawable/property_animation_switch_background"
+      android:background="@drawable/property_animator_switch_background"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
       android:layout_width="32dp"
       android:layout_height="32dp"
       android:layout_marginStart="4dp"
-      android:background="@drawable/property_animation_switch_ball_background"
+      android:background="@drawable/property_animator_switch_ball_background"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="@id/switchBackground"
       app:layout_constraintTop_toTopOf="parent" />

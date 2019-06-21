@@ -36,14 +36,14 @@
   </fragment>
   <fragment
     android:id="@+id/viewAnimationFragment"
-    android:name="com.karumi.androidanimations.viewanimator.ViewAnimationFragment"
+    android:name="com.karumi.androidanimations.viewanimation.ViewAnimationFragment"
     android:label="@string/section_view_animation_framework"
     tools:layout="@layout/fragment_view_animation" />
   <fragment
     android:id="@+id/propertyAnimationFragment"
-    android:name="com.karumi.androidanimations.propertyanimations.PropertyAnimationFragment"
+    android:name="com.karumi.androidanimations.propertyanimator.PropertyAnimatorFragment"
     android:label="@string/section_property_animation_framework"
-    tools:layout="@layout/fragment_property_animation" />
+    tools:layout="@layout/fragment_property_animator" />
   <fragment
     android:id="@+id/drawableGraphicsAnimationFragment"
     android:name="com.karumi.androidanimations.drawablegraphicsanimation.DrawableGraphicsAnimationFragment"

@@ -1,4 +1,4 @@
-package com.karumi.androidanimations.viewanimator
+package com.karumi.androidanimations.viewanimation
 
 import android.content.Context
 import android.view.View
@@ -10,7 +10,7 @@ import android.view.animation.ScaleAnimation
 import android.view.animation.TranslateAnimation
 import android.widget.TextView
 import com.karumi.androidanimations.R
-import com.karumi.androidanimations.viewanimator.ViewAnimationFragment.SimpleAnimation
+import com.karumi.androidanimations.viewanimation.ViewAnimationFragment.SimpleAnimation
 
 interface ViewSimpleAnimation {
     class VH(itemView: View) : com.afollestad.recyclical.ViewHolder(itemView) {

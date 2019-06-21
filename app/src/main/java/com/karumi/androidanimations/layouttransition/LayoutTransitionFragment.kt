@@ -10,7 +10,7 @@ import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
 import com.karumi.androidanimations.R
 import com.karumi.androidanimations.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_property_animation.*
+import kotlinx.android.synthetic.main.fragment_property_animator.*
 
 class LayoutTransitionFragment : BaseFragment() {
 

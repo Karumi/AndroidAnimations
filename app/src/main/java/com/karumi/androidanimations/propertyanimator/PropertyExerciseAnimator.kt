@@ -1,11 +1,11 @@
-package com.karumi.androidanimations.propertyanimations
+package com.karumi.androidanimations.propertyanimator
 
 import android.content.Context
 import android.view.View
 import android.widget.TextView
 import com.karumi.androidanimations.R
 
-interface PropertyExerciseAnimation {
+interface PropertyExerciseAnimator {
     class VH(itemView: View) : com.afollestad.recyclical.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.animationName)
         val button: View = itemView.findViewById(R.id.button)

@@ -1,4 +1,4 @@
-package com.karumi.androidanimations.propertyanimations
+package com.karumi.androidanimations.propertyanimator
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -12,33 +12,33 @@ import android.view.WindowManager
 import android.widget.TextView
 import com.karumi.androidanimations.R
 import com.karumi.androidanimations.extensions.animatePath
-import com.karumi.androidanimations.propertyanimations.PropertyAnimationFragment.PropertyAnimation
+import com.karumi.androidanimations.propertyanimator.PropertyAnimatorFragment.PropertyAnimator
 import kotlin.random.Random
 
-interface PropertySimpleAnimation {
+interface PropertySimpleAnimator {
     class VH(itemView: View) : com.afollestad.recyclical.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.animationName)
         val button: View = itemView.findViewById(R.id.target)
     }
 
     class Binder(val getContext: () -> Context) {
-        operator fun invoke(receiver: VH, item: PropertyAnimation) = receiver.bind(item)
+        operator fun invoke(receiver: VH, item: PropertyAnimator) = receiver.bind(item)
 
-        private fun VH.bind(item: PropertyAnimation) {
+        private fun VH.bind(item: PropertyAnimator) {
             name.text = getAnimationName(item)
             animate(item, button)
         }
 
-        private fun getAnimationName(item: PropertyAnimation): String = when (item) {
-            PropertyAnimation.Translate -> R.string.property_animation_translation_x
-            PropertyAnimation.Path -> R.string.property_animation_path_interpolator
-            PropertyAnimation.AnimatorSet -> R.string.property_animation_path_interpolator
+        private fun getAnimationName(item: PropertyAnimator): String = when (item) {
+            PropertyAnimator.Translate -> R.string.property_animation_translation_x
+            PropertyAnimator.Path -> R.string.property_animation_path_interpolator
+            PropertyAnimator.AnimatorSet -> R.string.property_animation_path_interpolator
         }.let { getContext().getString(it) }
 
-        private fun animate(item: PropertyAnimation, view: View) {
+        private fun animate(item: PropertyAnimator, view: View) {
             view.configureOnClickListener()
             when (item) {
-                PropertyAnimation.Translate -> {
+                PropertyAnimator.Translate -> {
                     ValueAnimator.ofFloat(0f, 0.5f * screenSize.x.toFloat()).apply {
                         duration = 2000
                         addUpdateListener {
@@ -50,14 +50,14 @@ interface PropertySimpleAnimation {
                         repeatMode = ValueAnimator.REVERSE
                     }.start()
                 }
-                PropertyAnimation.Path -> {
+                PropertyAnimator.Path -> {
                     val path = Path().apply {
                         moveTo(50f, 50f)
                         quadTo(50f, 200f, 0.5f * screenSize.x.toFloat(), 200f)
                     }
                     animatePath(view, path).start()
                 }
-                PropertyAnimation.AnimatorSet -> {
+                PropertyAnimator.AnimatorSet -> {
                     val path = Path().apply {
                         moveTo(50f, 50f)
                         quadTo(50f, 200f, 0.5f * screenSize.x.toFloat(), 200f)

@@ -1,4 +1,4 @@
-package com.karumi.androidanimations.viewanimator
+package com.karumi.androidanimations.viewanimation
 
 import android.content.Context
 import android.view.View
