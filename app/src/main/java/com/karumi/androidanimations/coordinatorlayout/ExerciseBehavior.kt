@@ -5,6 +5,8 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.airbnb.lottie.LottieAnimationView
+import kotlin.math.max
+import kotlin.math.min
 
 class ExerciseBehavior(
     context: Context,
@@ -58,13 +60,13 @@ class ExerciseBehavior(
         consumed: IntArray,
         type: Int
     ) {
-        if (target.top < 0) {
+        val targetIsTranslatedUp = target.translationY < 0
+        if (targetIsTranslatedUp) {
             /**
-             * No matter what, we consume the overscroll whenever we moved the target view.
+             * No matter what, we consume the scroll event whenever we moved the target view so the view doesn't
+             * perform the default scroll implementation.
              */
             consumed[1] = dy
-
-            animateIfVisible(child)
 
             /**
              * We only move the target view if one of the following is satisfied:
@@ -72,8 +74,10 @@ class ExerciseBehavior(
              *     view below the scroll.
              *   - We are scrolling back to the original position.
              */
-            if (target.top > -childHeight || dy < 0) {
-                overscroll(child, target, dy)
+            val scrollingDown = dy < 0
+            val targetIsOverTheScroll = target.translationY > -childHeight
+            if (targetIsOverTheScroll || scrollingDown) {
+                handleScroll(child, target, dy)
             }
         }
     }
@@ -91,35 +95,34 @@ class ExerciseBehavior(
         /**
          * We are responsible for listening to new over-scrolls, that is, when dyUnconsumed is
          * positive: That means we got to the end of the list and still there is scrolling left
-         * to process. In that case we "simulate" the scroll by moving the whole view. When that
-         * happens onNestedPreScroll will start doing things because [target.top < 0].
+         * to process. In that case we "simulate" the scroll by translating the whole view. When that
+         * happens onNestedPreScroll will start doing things because [target.translateY < 0].
          */
-        if (dyUnconsumed > 0) {
-            overscroll(child, target, dyUnconsumed)
+        val isOverScrolling = dyUnconsumed > 0
+        if (isOverScrolling) {
+            handleScroll(child, target, dyUnconsumed)
         }
+        updateChildViewAnimationState(child)
     }
 
-    private fun overscroll(child: View, target: View, dy: Int) {
-        val targetHeight = target.measuredHeight
-
-        /**
-         * We are going to calculate min and max positions for the bottom and the top points for
-         * both views. We are doing this so that small floating point operations do not carry
-         * errors around.
-         */
-        target.top = (target.top - dy).clamp(-childHeight, 0)
-        target.bottom = (target.bottom - dy).clamp(targetHeight - childHeight, targetHeight)
-        child.top = (child.top - dy).clamp(targetHeight - childHeight, targetHeight)
-        child.bottom = (child.bottom - dy).clamp(targetHeight, targetHeight + childHeight)
+    private fun handleScroll(child: View, target: View, dy: Int) {
+        updateTranslationY(target, dy)
+        updateTranslationY(child, dy)
     }
 
-    private fun Int.clamp(min: Int, max: Int): Int {
-        return Math.min(max, Math.max(this, min))
+    private fun updateTranslationY(view: View, dy: Int) {
+        val proposedTranslation = view.translationY - dy
+        view.translationY = proposedTranslation.clamp(-childHeight.toFloat(), 0f)
     }
 
-    private fun animateIfVisible(child: LottieAnimationView) {
-        if (!child.isAnimating) {
+    private fun Float.clamp(min: Float, max: Float): Float = min(max, max(this, min))
+
+    private fun updateChildViewAnimationState(child: LottieAnimationView) {
+        val lastItemVisible = child.translationY < 0
+        if (lastItemVisible && !child.isAnimating) {
             child.playAnimation()
+        } else {
+            child.pauseAnimation()
         }
     }
 }
