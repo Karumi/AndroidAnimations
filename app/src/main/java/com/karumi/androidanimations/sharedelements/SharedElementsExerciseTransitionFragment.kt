@@ -14,6 +14,7 @@ import com.karumi.androidanimations.base.BaseFragment
 import com.karumi.androidanimations.common.CircularView
 import com.karumi.androidanimations.extensions.px
 import kotlinx.android.synthetic.main.fragment_shared_elements_exercise_transition.*
+import kotlin.math.hypot
 
 class SharedElementsExerciseTransitionFragment : BaseFragment() {
 
@@ -59,7 +60,7 @@ class SharedElementsExerciseTransitionFragment : BaseFragment() {
         background.setBackgroundColor(args.color.colorInt)
         val offset = 24.px
         background.center = PointF(0f, 0f)
-        background.radius = Math.hypot(
+        background.radius = hypot(
             background.measuredWidth.toDouble() + offset,
             background.measuredHeight.toDouble() + offset
         ).toFloat()
