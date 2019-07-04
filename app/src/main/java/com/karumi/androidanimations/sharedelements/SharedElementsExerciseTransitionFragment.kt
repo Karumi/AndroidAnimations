@@ -22,7 +22,6 @@ import androidx.transition.TransitionSet
 import com.karumi.androidanimations.R
 import com.karumi.androidanimations.base.BaseFragment
 import com.karumi.androidanimations.common.CircularView
-import com.karumi.androidanimations.common.GlobalPositionTransition
 import com.karumi.androidanimations.common.RadiusTransition
 import com.karumi.androidanimations.extensions.px
 import kotlinx.android.synthetic.main.fragment_shared_elements_exercise_transition.*
@@ -38,19 +37,19 @@ class SharedElementsExerciseTransitionFragment : BaseFragment() {
             minimumVerticalAngle = 45f
         }
 
-        private val <T: Transition> T.accelerated: T
+        private val <T : Transition> T.accelerated: T
             get() {
                 interpolator = AccelerateInterpolator(easinessFactor)
                 return this
             }
 
-        private val <T: Transition> T.decelerated: T
+        private val <T : Transition> T.decelerated: T
             get() {
                 interpolator = DecelerateInterpolator(easinessFactor)
                 return this
             }
 
-        private val <T: Transition> T.withArc: T
+        private val <T : Transition> T.withArc: T
             get() {
                 setPathMotion(arcMotion)
                 return this
@@ -58,7 +57,16 @@ class SharedElementsExerciseTransitionFragment : BaseFragment() {
 
         val enterSharedElementTransition
             get() = TransitionSet()
-                .addTransition(GlobalPositionTransition().accelerated.withArc)
+                .addTransition(
+                    TransitionSet()
+                        .addTransition(ChangeBounds())
+                        .addTransition(
+                            ChangeTransform()
+                                .accelerated
+                                .withArc
+                        )
+                        .apply { ordering = TransitionSet.ORDERING_TOGETHER }
+                )
                 .addTransition(RadiusTransition().decelerated)
                 .apply { ordering = TransitionSet.ORDERING_SEQUENTIAL }
 
