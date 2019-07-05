@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
 import com.karumi.androidanimations.R
 import kotlinx.android.synthetic.main.fragment_motion_layout.*
 
@@ -26,24 +25,9 @@ class MotionLayoutFragment : Fragment() {
         adapter.addPage("Gulava", R.layout.motion_layout_view_pager_page3)
         pager.adapter = adapter
         tabLayout.setupWithViewPager(pager)
-        pager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
 
-            }
 
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-                val numberOfPages = 3
-                container.progress = (position + positionOffset) / (numberOfPages - 1)
-            }
-
-            override fun onPageSelected(position: Int) {
-            }
-
-        })
+        TODO("Subscribe to the ViewPager and move the progress of the transition")
     }
 }
 
